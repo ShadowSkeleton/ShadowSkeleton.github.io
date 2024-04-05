@@ -7,69 +7,83 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.hamburger').addEventListener('click', function() {
+                document.getElementById('nav-menu').classList.toggle('nav-active');
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
         <h1>Jingrui Feng</h1>
+        <!-- Hamburger button, hidden on desktop -->
+        <button class="hamburger" aria-label="Open navigation menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navigation links, shown by default, hidden on mobile -->
         <nav>
-            <ul>
+            <ul id="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#lifestyle-hobbies">Hobbies</a></li>
+                <li><a href="#lifestyle-hobbies">Lifestyle & Hobbies</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="about">
-            <div class="about-container">
-                <div class="photo-container">
-                    <img src="profile.jpeg" alt="Jingrui Feng">
+        <div class ="content-container">
+            <section id="about">
+                <div class="about-container">
+                    <div class="photo-container">
+                        <img src="profile.jpeg" alt="Jingrui Feng">
+                    </div>
+                    <div class="about-text">
+                        <h2>About Me</h2>
+                        <p>Seeking an entry-level internship in software development, web development, and other information technology-related fields.</p>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>Seeking an entry-level internship in software development, web development, and other information technology-related fields.</p>
-                </div>
-            </div>
-        </section>
-        <section id="education">
-            <h2>Education</h2>
-            <p>B.S. in Information Technology and Web Science from Rensselaer Polytechnic Institute, GPA: 3.48/4.0.</p>
-        </section>
+            </section>
+            <section id="education">
+                <h2>Education</h2>
+                <p>B.S. in Information Technology and Web Science from Rensselaer Polytechnic Institute, GPA: 3.48/4.0.</p>
+            </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>RPI Open Source Project - Housing 2.0</h3>
-                <p>As a Full Stack Developer, I contributed to designing and implementing a website to enhance the housing application process for RPI students. My role included front-end design and back-end development, with a focus on database setup and server endpoint configuration.</p>
-                <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Python, React, Node.js</p>
-            </div>
-            <div class="project">
-                <h3>RPI Foodies Web System Development Course Project</h3>
-                <p>Working with a team, I helped develop a dining hall food ranking website, enabling students to share and discover food options. The project aimed to enhance campus dining experiences through a community-driven platform.</p>
-                <p><strong>Technologies:</strong> PHP, MySQL, HTML, CSS, JavaScript</p>
-            </div>
-        </section>
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skill-item"><i class="fa-brands fa-cuttlefish"></i> C++</div>
-                <div class="skill-item"><i class="fa-brands fa-python"></i> Python</div>
-                <div class="skill-item"><i class="fa-solid fa-c"></i> C</div>
-                <div class="skill-item"><i class="fa-brands fa-google"></i> Flutter</div>
-                <div class="skill-item"><i class="fa-brands fa-react"></i> React</div>
-                <div class="skill-item"><i class="fa-brands fa-js-square"></i> JavaScript</div>
-                <div class="skill-item"><i class="fa-brands fa-java"></i> Java</div>
-                <div class="skill-item"><i class="fa-brands fa-php"></i> PHP</div>
-                <div class="skill-item"><i class="fa-solid fa-database"></i> MongoDB</div>
-                <div class="skill-item"><i class="fa-solid fa-database"></i> MySQL</div>
-            </div>
-        </section>
-        <section id="lifestyle-hobbies">
-            <h2>Lifestyle & Hobbies</h2>
-            <p>I'm passionate about photography, gaming, and staying up-to-date with the latest tech products. These hobbies fuel my creativity and technical skills.</p>
-        </section>
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>RPI Open Source Project - Housing 2.0</h3>
+                    <p>As a Full Stack Developer, I contributed to designing and implementing a website to enhance the housing application process for RPI students. My role included front-end design and back-end development, with a focus on database setup and server endpoint configuration.</p>
+                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Python, React, Node.js</p>
+                </div>
+                <div class="project">
+                    <h3>RPI Foodies Web System Development Course Project</h3>
+                    <p>Working with a team, I helped develop a dining hall food ranking website, enabling students to share and discover food options. The project aimed to enhance campus dining experiences through a community-driven platform.</p>
+                    <p><strong>Technologies:</strong> PHP, MySQL, HTML, CSS, JavaScript</p>
+                </div>
+            </section>
+            <section id="skills">
+                <h2>Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-item"><i class="fa-brands fa-cuttlefish"></i> C++</div>
+                    <div class="skill-item"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="skill-item"><i class="fa-solid fa-c"></i> C</div>
+                    <div class="skill-item"><i class="fa-brands fa-google"></i> Flutter</div>
+                    <div class="skill-item"><i class="fa-brands fa-react"></i> React</div>
+                    <div class="skill-item"><i class="fa-brands fa-js-square"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fa-brands fa-java"></i> Java</div>
+                    <div class="skill-item"><i class="fa-brands fa-php"></i> PHP</div>
+                    <div class="skill-item"><i class="fa-solid fa-database"></i> MongoDB</div>
+                    <div class="skill-item"><i class="fa-solid fa-database"></i> MySQL</div>
+                </div>
+            </section>
+            <section id="lifestyle-hobbies">
+                <h2>Lifestyle & Hobbies</h2>
+                <p>I'm passionate about photography, gaming, and staying up-to-date with the latest tech products. These hobbies fuel my creativity and technical skills.</p>
+            </section>
+        </div>
     </main>
 </body>
 </html>

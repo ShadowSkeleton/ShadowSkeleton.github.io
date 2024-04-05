@@ -8,6 +8,7 @@ body {
 }
 
 header {
+    position: relative;
     background-color: #333;
     color: #fff;
     padding-top: 20px;
@@ -191,8 +192,161 @@ ul li {
     color: #076bf0;
     font-size: 1.5rem;
 }
+.content-container {
+    max-width: 1200px; /* Adjust this value to suit your design */
+    margin: auto; /* This centers the content */
+    padding: 0 20px; /* Adds some padding on the sides */
+}
+
+@media (min-width: 1200px) {
+    header, .content-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+/* Existing CSS for larger screens */
+
+/* ... */
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Adjust the header styles for mobile */
+    header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* Make the nav menu more mobile-friendly */
+    nav ul {
+        display: block;
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* Stack the photo and about text vertically */
+    .about-container {
+        flex-direction: column;
+        align-items: center; /* Center-align the items */
+        gap: 0;
+    }
+
+    /* Adjust photo size for mobile */
+    .photo-container img {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Adjust text size for mobile */
+    .about-text, .education-container, .project, .skill-item, .skills-container {
+        font-size: 14px; /* Smaller text for mobile */
+    }
+
+    /* Adjust skill-item layout for mobile */
+    .skills-container {
+        justify-content: center; /* Center skills */
+        gap: 10px; /* Reduce space between skills */
+    }
+
+    .skill-item {
+        margin: 5px; /* Less margin for mobile */
+        padding: 8px; /* Less padding for mobile */
+    }
+
+    /* Specific tweaks to the skills layout */
+    .skills-container {
+        flex-direction: column; /* Stack skill items vertically */
+    }
+
+    .skill-item {
+        width: 90%; /* Make skill items take more horizontal space */
+        margin-bottom: 10px; /* Add some space between skill items */
+        text-align: left; /* Align the text to the left */
+    }
+
+    .skill-item i {
+        margin-right: 5px; /* Reduce space between icon and text */
+        font-size: 1.2rem; /* Adjust icon size for mobile */
+    }
+}
+/* ... other styles ... */
+
+/* ... existing styles ... */
+
+/* Hamburger Icon */
+.hamburger {
+    display: none; /* Hidden by default, shown in media query */
+    background: transparent;
+    border: none;
+    color: white; /* Color of the hamburger icon */
+    font-size: 2rem; /* Size of the hamburger icon */
+    cursor: pointer;
+    position: absolute;
+    top: 10%;
+    right: 10px;
+
+}
 
 
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    /* Show hamburger icon */
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 20;
+        /* ... other styles ... */
+    }
+
+    /* Hide the navigation menu by default */
+    #nav-menu {
+        display: none;
+        /* ... other styles ... */
+    }
+
+    /* Show the navigation menu when nav-active class is added */
+    #nav-menu.nav-active {
+        display: block;
+        position: absolute;
+        top: 60px; /* Height of the header */
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        /* ... other styles ... */
+    }
+
+    /* Style individual nav items */
+    #nav-menu.nav-active li {
+        padding: 15px; /* Add padding to each item */
+        border-bottom: 1px solid #ccc; /* Optional: add a separator between items */
+        background-color: #f8f8f8;
+        /* ... other styles ... */
+    }
+
+    /* Ensure nav items text is visible */
+    #nav-menu.nav-active li a {
+        color: #333;
+        /* ... other styles ... */
+    }
+}
 
 
+/* Desktop Navigation Styles */
+@media (min-width: 769px) {
+    /* Desktop styles */
+    .hamburger {
+        display: none; /* Ensure the hamburger is hidden on desktop */
+    }
+
+    nav ul {
+        display: flex; /* Flex display for desktop menu */
+        /* Rest of your desktop nav styles */
+    }
+}
 
