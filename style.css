@@ -1,0 +1,198 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background: #eee;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding-top: 20px;
+    min-height: 70px;
+}
+
+header h1, nav ul {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0; /* Eliminates space under the navigation for a tighter header */
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+nav ul li a:hover {
+    color: #076bf0; /* Changes color when hovering over links */
+}
+
+section {
+    padding: 40px 20px; /* Increased padding for better spacing */
+    margin: 20px 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+h2 {
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 20px; /* Spacing under headings */
+}
+
+.photo-container {
+    text-align: center;
+    margin: 20px auto; /* Centers the photo container */
+}
+
+.photo-container img {
+    width: auto; /* Adjusts width dynamically */
+    max-width: 200px;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More prominent shadow for the photo */
+    display: inline-block; /* Allows for vertical centering */
+}
+
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .photo-container img {
+        max-width: 150px; /* Smaller photo for mobile devices */
+    }
+}
+
+ul {
+    list-style-type: none; /* Removes bullet points from lists */
+    padding-left: 0; /* Aligns list items to the left */
+}
+
+ul li {
+    padding: 5px 0; /* Adds spacing between list items */
+}
+
+/* Additional styles for lifestyle & hobbies section */
+#lifestyle-hobbies {
+    background-color: #f9f9f9; /* Lighter background for contrast */
+    border-left: 4px solid #076bf0; /* Accent line for visual interest */
+    padding-left: 36px; /* Align text inside the section */
+}
+
+/* Existing CSS rules */
+
+/* Additional styles for about section */
+.about-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    gap: 20px; /* Adds space between image and text */
+}
+
+.photo-container img {
+    width: 200px; /* Fixed width */
+    height: 200px; /* Fixed height to create a square */
+    object-fit: cover; /* Ensures the image covers the whole area without distortion */
+    object-position: center 20%; /* Adjusts the position of the image within the frame */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+.about-text {
+    flex-grow: 1; /* Allows the text container to fill the remaining space */
+    padding: 0 20px; /* Adds padding on the sides */
+}
+
+.about-text h2 {
+    font-size: 1.75rem; /* Adjust the size as desired */
+}
+
+.about-text p {
+    font-size: 1rem; /* Adjust the size as desired */
+    margin-top: 10px; /* Adds a little space below the heading */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column; /* Stack image and text on top of each other */
+        text-align: center; /* Center-align the text for smaller screens */
+    }
+
+    .photo-container img {
+        max-width: 150px; /* Adjust the image size for smaller screens */
+    }
+
+    .about-text {
+        padding: 0; /* Remove padding on smaller screens */
+    }
+}
+
+.project {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #076bf0;
+    border-radius: 4px;
+}
+
+.project h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+.project p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
+}
+
+.project p strong {
+    color: #333;
+    font-weight: 600;
+}
+
+
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #5a5a5a;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.skill-item i {
+    margin-right: 10px;
+    color: #076bf0;
+    font-size: 1.5rem;
+}
+
+
+
+
+
