@@ -1,190 +1,161 @@
+/* General Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
-    background: #eee;
+    background: #f4f4f4;
     line-height: 1.6;
 }
 
 header {
     position: relative;
-    background-color: #333;
     color: #fff;
-    padding-top: 20px;
-    min-height: 70px;
-}
-
-header h1, nav ul {
     text-align: center;
 }
 
+.hero-section {
+    background: url('hero.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem; /* Increased font size */
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 1.75rem; /* Increased font size */
+    margin-bottom: 20px;
+}
+
+.cta-button a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background: linear-gradient(135deg, #007BFF, #0056D2); /* Gradient background */
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0.1), 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.cta-button a:hover {
+    background: linear-gradient(135deg, #0056D2, #003DA1); /* Darker gradient on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2), 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+
+/* Navigation */
 nav ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
-    margin-bottom: 0; /* Eliminates space under the navigation for a tighter header */
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease; /* Smooth transition for hover effects */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 1); /* Adds shadow to make text pop */
+    font-size: 1.2rem;
 }
 
 nav ul li a:hover {
-    color: #076bf0; /* Changes color when hovering over links */
+    color: #333333; /* Changes to a bright black on hover */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); /* More pronounced shadow on hover */
 }
 
-section {
-    padding: 40px 20px; /* Increased padding for better spacing */
-    margin: 20px 10px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-}
-
-h2 {
-    font-family: 'Roboto Slab', serif;
-    margin-bottom: 20px; /* Spacing under headings */
-}
-
-.photo-container {
-    text-align: center;
-    margin: 20px auto; /* Centers the photo container */
-}
-
-.photo-container img {
-    width: auto; /* Adjusts width dynamically */
-    max-width: 200px;
-    height: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More prominent shadow for the photo */
-    display: inline-block; /* Allows for vertical centering */
-}
-
-@media (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .photo-container img {
-        max-width: 150px; /* Smaller photo for mobile devices */
-    }
-}
-
-ul {
-    list-style-type: none; /* Removes bullet points from lists */
-    padding-left: 0; /* Aligns list items to the left */
-}
-
-ul li {
-    padding: 5px 0; /* Adds spacing between list items */
-}
-
-/* Additional styles for lifestyle & hobbies section */
-#lifestyle-hobbies {
-    background-color: #f9f9f9; /* Lighter background for contrast */
-    border-left: 4px solid #076bf0; /* Accent line for visual interest */
-    padding-left: 36px; /* Align text inside the section */
-}
-
-/* Existing CSS rules */
-
-/* Additional styles for about section */
-.about-container {
-    display: flex;
-    align-items: center; /* Aligns items vertically in the center */
-    gap: 20px; /* Adds space between image and text */
-}
-
-.photo-container img {
-    width: 200px; /* Fixed width */
-    height: 200px; /* Fixed height to create a square */
-    object-fit: cover; /* Ensures the image covers the whole area without distortion */
-    object-position: center 20%; /* Adjusts the position of the image within the frame */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-
-.about-text {
-    flex-grow: 1; /* Allows the text container to fill the remaining space */
-    padding: 0 20px; /* Adds padding on the sides */
-}
-
-.about-text h2 {
-    font-size: 1.75rem; /* Adjust the size as desired */
-}
-
-.about-text p {
-    font-size: 1rem; /* Adjust the size as desired */
-    margin-top: 10px; /* Adds a little space below the heading */
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column; /* Stack image and text on top of each other */
-        text-align: center; /* Center-align the text for smaller screens */
-    }
-
-    .photo-container img {
-        max-width: 150px; /* Adjust the image size for smaller screens */
-    }
-
-    .about-text {
-        padding: 0; /* Remove padding on smaller screens */
-    }
-}
-
-.project {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-left: 4px solid #076bf0;
-    border-radius: 4px;
-}
-
-.project h3 {
-    color: #333;
-    margin-top: 0;
-}
-
-.project p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #666;
-}
-
-.project p strong {
-    color: #333;
-    font-weight: 600;
-}
-
-
-
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+/* Main Content */
+.content-container {
+    max-width: 1200px;
+    margin: auto;
     padding: 20px;
 }
 
-.skill-item {
+.about-container, .project-cards, .skills-container {
     display: flex;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    font-size: 1.2rem;
-    color: #5a5a5a;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.photo-container {
+    flex: 1;
+    max-width: 300px;
+    margin-right: 20px;
+}
+
+.photo-container img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-text {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-cards {
+    justify-content: space-around;
+}
+
+.project-card {
     background: white;
+    padding: 20px;
+    margin: 10px;
+    flex: 0 1 45%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.skills-container {
+    justify-content: center;
+}
+
+.skill-item {
+    background: white;
+    padding: 10px 20px;
+    margin: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-item i {
@@ -192,92 +163,50 @@ ul li {
     color: #076bf0;
     font-size: 1.5rem;
 }
-.content-container {
-    max-width: 1200px; /* Adjust this value to suit your design */
-    margin: auto; /* This centers the content */
-    padding: 0 20px; /* Adds some padding on the sides */
+
+.skill-item:hover {
+    background: #f4f4f4;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 1200px) {
-    header, .content-container {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
+/* Lifestyle & Hobbies Section */
+#lifestyle-hobbies {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Existing CSS for larger screens */
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
 
-/* ... */
-
-/* Mobile Styles */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    /* Adjust the header styles for mobile */
-    header {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    /* Make the nav menu more mobile-friendly */
-    nav ul {
-        display: block;
-        text-align: center;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    /* Stack the photo and about text vertically */
-    .about-container {
+    .about-container, .project-cards, .skills-container {
         flex-direction: column;
-        align-items: center; /* Center-align the items */
-        gap: 0;
     }
 
-    /* Adjust photo size for mobile */
-    .photo-container img {
-        width: 120px;
-        height: 120px;
+    .photo-container {
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 
-    /* Adjust text size for mobile */
-    .about-text, .education-container, .project, .skill-item, .skills-container {
-        font-size: 14px; /* Smaller text for mobile */
+    .project-card {
+        flex: 0 1 100%;
     }
 
-    /* Adjust skill-item layout for mobile */
-    .skills-container {
-        justify-content: center; /* Center skills */
-        gap: 10px; /* Reduce space between skills */
-    }
-
-    .skill-item {
-        margin: 5px; /* Less margin for mobile */
-        padding: 8px; /* Less padding for mobile */
-    }
-
-    /* Specific tweaks to the skills layout */
-    .skills-container {
-        flex-direction: column; /* Stack skill items vertically */
-    }
-
-    .skill-item {
-        width: 90%; /* Make skill items take more horizontal space */
-        margin-bottom: 10px; /* Add some space between skill items */
-        text-align: left; /* Align the text to the left */
-    }
-
-    .skill-item i {
-        margin-right: 5px; /* Reduce space between icon and text */
-        font-size: 1.2rem; /* Adjust icon size for mobile */
+    nav ul {
+        flex-direction: column;
     }
 }
-/* ... other styles ... */
 
-/* ... existing styles ... */
-
-/* Hamburger Icon */
+/* Mobile Menu */
 .hamburger {
     display: none; /* Hidden by default, shown in media query */
     background: transparent;
@@ -288,65 +217,29 @@ ul li {
     position: absolute;
     top: 10%;
     right: 10px;
-
 }
 
-
-/* Media query for mobile devices */
 @media (max-width: 768px) {
-    /* Show hamburger icon */
     .hamburger {
         display: block;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 20;
-        /* ... other styles ... */
-    }
-
-    /* Hide the navigation menu by default */
-    #nav-menu {
-        display: none;
-        /* ... other styles ... */
-    }
-
-    /* Show the navigation menu when nav-active class is added */
-    #nav-menu.nav-active {
-        display: block;
-        position: absolute;
-        top: 60px; /* Height of the header */
-        left: 0;
-        right: 0;
-        background-color: #fff;
-        /* ... other styles ... */
-    }
-
-    /* Style individual nav items */
-    #nav-menu.nav-active li {
-        padding: 15px; /* Add padding to each item */
-        border-bottom: 1px solid #ccc; /* Optional: add a separator between items */
-        background-color: #f8f8f8;
-        /* ... other styles ... */
-    }
-
-    /* Ensure nav items text is visible */
-    #nav-menu.nav-active li a {
-        color: #333;
-        /* ... other styles ... */
-    }
-}
-
-
-/* Desktop Navigation Styles */
-@media (min-width: 769px) {
-    /* Desktop styles */
-    .hamburger {
-        display: none; /* Ensure the hamburger is hidden on desktop */
     }
 
     nav ul {
-        display: flex; /* Flex display for desktop menu */
-        /* Rest of your desktop nav styles */
+        display: none;
+    }
+
+    nav ul.nav-active {
+        display: flex;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+    }
+
+    nav ul.nav-active li {
+        margin: 10px 0;
     }
 }
-
