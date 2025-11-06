@@ -3,8 +3,8 @@ name: Deploy Portfolio
 on:
   push:
     branches:
-      - main  # or 'master' if your repo uses that
-  workflow_dispatch:  # ✅ allows manual run from GitHub Actions UI
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,19 +22,20 @@ jobs:
         with:
           node-version: 20
 
+      - name: Change to portfolio directory
+        run: cd my-portfolio
+        shell: bash
+
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+        working-directory: ./my-portfolio
+        run: npm install
 
       - name: Build project
+        working-directory: ./my-portfolio
         run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./my-portfolio/dist
