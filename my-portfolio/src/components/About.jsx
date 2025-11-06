@@ -29,7 +29,7 @@ export default function About() {
                 >
                     I’m <span className="font-semibold">Jingrui Feng</span>, an Information Technology and Web Science graduate
                     from Rensselaer Polytechnic Institute, currently based in <span className="font-semibold">Jersey City, NJ</span>.
-                    My interests lie in full-stack development, scalable software design, and systems optimization.
+                    I’m passionate about full-stack development and designing efficient, maintainable software solutions that deliver great user experiences.
                 </motion.p>
 
                 <motion.p

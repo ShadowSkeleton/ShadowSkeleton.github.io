@@ -4,13 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function NavBar() {
     const [active, setActive] = useState("");
-    const [theme, setTheme] = useState(
-        () =>
-            localStorage.getItem("theme") ||
-            (window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light")
-    );
+    // Default to light mode first; remember user’s last choice
+    const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "light");
+
 
     // observe which section is active
     useEffect(() => {
