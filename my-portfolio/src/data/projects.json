@@ -1,0 +1,54 @@
+[
+  {
+    "title": "MissionFlow – United Airlines Airshop Lab",
+    "location": "Troy, NY",
+    "date": "Sep 2024 – Dec 2024",
+    "role": "Frontend Developer",
+    "details": [
+      "Developed a comprehensive web app in collaboration with United Airlines’ Airshop Lab to manage robotic R&D missions, enhancing scalability and innovation.",
+      "Automated mission file management and execution, centralizing data, and reducing manual overhead by 50%.",
+      "Integrated analytics and Boston Dynamics APIs for real-time robot insights and mission control, cutting error rates by 15%.",
+      "Improved UI responsiveness and data visualization through modular React components and optimized REST APIs."
+    ],
+    "tech": ["React", "Node.js", "MongoDB", "Boston Dynamics API", "REST API"]
+  },
+  {
+    "title": "NASA Renewable Energy Data Visualization",
+    "location": "Troy, NY",
+    "date": "Jan 2023 – Jul 2023",
+    "role": "Full-Stack Developer",
+    "details": [
+      "Leveraged NASA’s POWER dataset to analyze solar and wind potential across U.S. counties, providing insights into renewable energy feasibility.",
+      "Built an interactive visualization using React with dynamic color-coded maps and filtering tools to compare energy trends.",
+      "Developed a high-performance, stateless REST API with Node.js and MongoDB for efficient data retrieval.",
+      "Presented research findings at the 2023 ESIP Meeting, demonstrating real-world applications of open energy data."
+    ],
+    "tech": ["React", "Node.js", "MongoDB", "NASA POWER API", "Data Visualization"]
+  },
+  {
+    "title": "Ryan’s Ice Cream Online Ordering System",
+    "location": "Troy, NY",
+    "date": "Jan 2024 – Apr 2024",
+    "role": "Software Developer",
+    "details": [
+      "Designed and implemented an online cake-ordering platform using AppFront and Figma, improving user experience and increasing sales by 35%.",
+      "Integrated secure payment processing, inventory tracking, and order management features, reducing manual errors by 20%.",
+      "Collaborated with stakeholders to gather requirements and perform user testing, ensuring intuitive and maintainable UI design.",
+      "Delivered a robust backend supporting data-driven insights and future scalability."
+    ],
+    "tech": ["AppFront", "JavaScript", "Figma", "SQL", "Payment Gateway Integration"]
+  },
+  {
+    "title": "RPI Foodies Dining Hall Ranking Platform",
+    "location": "Troy, NY",
+    "date": "Sep 2022 – Jan 2023",
+    "role": "Full-Stack Developer",
+    "details": [
+      "Built a community-driven dining ranking site allowing RPI students to share, rate, and discuss campus meals.",
+      "Implemented weekly food ranking algorithms based on user engagement and feedback.",
+      "Developed admin tools for content moderation, ensuring platform reliability and security.",
+      "Enabled a clean responsive interface for mobile and desktop users."
+    ],
+    "tech": ["React", "Node.js", "MySQL", "PHP", "User Engagement Systems"]
+  }
+]

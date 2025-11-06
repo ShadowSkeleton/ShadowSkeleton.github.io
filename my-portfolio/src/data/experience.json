@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Software Developer – United Airlines Airshop Lab",
+    "organization": "United Airlines",
+    "location": "Troy, NY",
+    "date": "Sep 2024 – Dec 2024",
+    "role": "Software Developer",
+    "details": [
+      "Engineered a web-based application using Agile methodology to streamline robotic R&D mission management, reducing setup time by 40%.",
+      "Built a centralized Node.js and MongoDB system for mission data organization, file transfer, command execution, and post-mission analysis, minimizing manual overhead by 50%.",
+      "Integrated Boston Dynamics API to enable real-time configuration and execution of robotic missions, improving workflow efficiency and responsiveness by 25%.",
+      "Enhanced scalability and maintainability with modular React components, expanding capacity for complex mission scenarios."
+    ],
+    "tech": ["React", "Node.js", "MongoDB", "Boston Dynamics API", "Agile"]
+  },
+  {
+    "title": "Software Engineer Intern – Haier Group Corporation",
+    "organization": "Haier Group Corporation",
+    "location": "Qingdao, China",
+    "date": "Sep 2023 – Dec 2023",
+    "role": "Software Engineer Intern",
+    "details": [
+      "Identified limitations in the legacy C-based codebase that constrained adaptability to modern frameworks.",
+      "Proposed and implemented migration to Flutter, modernizing the UI for laundry machine touch panels and enabling cross-platform deployment across Linux, Windows, and macOS.",
+      "Improved development efficiency by 50% and ensured hardware communication reliability through optimized Flutter plugin integration.",
+      "Collaborated with overseas clients to align project goals, resolve deployment issues, and maintain service continuity during system migration."
+    ],
+    "tech": ["C", "C++", "Flutter", "Software Architecture", "Cross-Platform Development"]
+  },
+  {
+    "title": "Undergraduate Teaching Assistant – Rensselaer Polytechnic Institute",
+    "organization": "Rensselaer Polytechnic Institute",
+    "location": "Troy, NY",
+    "date": "Aug 2024 – Dec 2024",
+    "role": "Undergraduate Teaching Assistant, Operating Systems",
+    "details": [
+      "Supported 200+ students in understanding core OS concepts including process synchronization, CPU scheduling, and memory management.",
+      "Assisted students in debugging C-based multithreaded programs using POSIX threads and guided exam preparation.",
+      "Collaborated with the professor on grading and lab design, improving student comprehension and course logistics."
+    ],
+    "tech": ["C", "POSIX Threads", "Operating Systems"]
+  },
+  {
+    "title": "Research Assistant – Chinese Academy of Sciences",
+    "organization": "Chinese Academy of Sciences",
+    "location": "Beijing, China (Remote)",
+    "date": "Jul 2024 – Sep 2024",
+    "role": "Research Assistant in Machine Learning",
+    "details": [
+      "Studied foundational research papers on Transformer models and modern ML architectures.",
+      "Implemented small-scale experiments to evaluate algorithm performance in text and vision tasks.",
+      "Collaborated with a research professor to design experiments connecting theoretical and applied ML concepts."
+    ],
+    "tech": ["Python", "PyTorch", "Transformer Models", "Machine Learning"]
+  }
+]
