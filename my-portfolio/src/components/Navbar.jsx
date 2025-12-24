@@ -40,6 +40,8 @@ export default function NavBar() {
         { id: "projects", label: "Projects" },
         { id: "education", label: "Education" },
         { id: "skills", label: "Skills" },
+        { id: "certifications", label: "Certifications" },
+        { id: "hobbies", label: "Hobbies" },
         { id: "contact", label: "Contact" },
     ];
 
@@ -54,7 +56,7 @@ export default function NavBar() {
                     : "bg-white/70 dark:bg-slate-900/70 border-b border-transparent"
             }`}
         >
-            <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-8 py-4">
+            <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 md:px-8 py-4">
                 {/* Logo/Brand */}
                 <motion.a
                     href="#hero"
@@ -97,7 +99,8 @@ export default function NavBar() {
                      bg-gray-100 dark:bg-gray-800
                      border border-gray-200 dark:border-gray-700
                      hover:bg-gray-200 dark:hover:bg-gray-700
-                     transition-all duration-200 group"
+                     transition-all duration-200 group
+                     ml-2"
                     aria-label="Toggle theme"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

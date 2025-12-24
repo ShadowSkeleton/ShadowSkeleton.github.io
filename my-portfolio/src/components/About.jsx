@@ -36,7 +36,8 @@ export default function About() {
                     >
                         <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
                             I'm <span className="font-semibold text-gray-900 dark:text-white">Jingrui Feng</span>, an Information Technology and Web Science graduate
-                            from <span className="font-semibold text-blue-600 dark:text-blue-400">Rensselaer Polytechnic Institute</span>, currently based in 
+                            from <span className="font-semibold text-blue-600 dark:text-blue-400">Rensselaer Polytechnic Institute</span>, currently pursuing my Master's degree in 
+                            Information Systems at <span className="font-semibold text-blue-600 dark:text-blue-400">New York University</span>, and based in 
                             <span className="font-semibold text-gray-900 dark:text-white"> Jersey City, NJ</span>.
                         </p>
                     </motion.div>

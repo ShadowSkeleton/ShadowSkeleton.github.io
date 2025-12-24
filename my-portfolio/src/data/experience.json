@@ -1,19 +1,5 @@
 [
   {
-    "title": "Software Developer – United Airlines Airshop Lab",
-    "organization": "United Airlines",
-    "location": "Troy, NY",
-    "date": "Sep 2024 – Dec 2024",
-    "role": "Software Developer",
-    "details": [
-      "Engineered a web-based application using Agile methodology to streamline robotic R&D mission management, reducing setup time by 40%.",
-      "Built a centralized Node.js and MongoDB system for mission data organization, file transfer, command execution, and post-mission analysis, minimizing manual overhead by 50%.",
-      "Integrated Boston Dynamics API to enable real-time configuration and execution of robotic missions, improving workflow efficiency and responsiveness by 25%.",
-      "Enhanced scalability and maintainability with modular React components, expanding capacity for complex mission scenarios."
-    ],
-    "tech": ["React", "Node.js", "MongoDB", "Boston Dynamics API", "Agile"]
-  },
-  {
     "title": "Software Engineer Intern – Haier Group Corporation",
     "organization": "Haier Group Corporation",
     "location": "Qingdao, China",

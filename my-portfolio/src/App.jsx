@@ -9,6 +9,7 @@ const Experience = lazy(() => import("./components/Experience"));
 const Projects = lazy(() => import("./components/Projects"));
 const Skills = lazy(() => import("./components/Skills"));
 const Certifications = lazy(() => import("./components/Certifications"));
+const Hobbies = lazy(() => import("./components/Hobbies"));
 const Contact = lazy(() => import("./components/Contact"));
 
 // Minimal loading fallback (invisible, just to prevent layout shift)
@@ -16,7 +17,7 @@ const LazyLoadFallback = () => null;
 
 function App() {
     return (
-        <div className="font-sans text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-950 scroll-smooth min-h-screen">
+        <div className="font-sans text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-950 scroll-smooth min-h-screen w-full max-w-full overflow-x-hidden">
             <Navbar />
             <Hero />
             <Suspense fallback={<LazyLoadFallback />}>
@@ -26,6 +27,7 @@ function App() {
                 <Projects />
                 <Skills />
                 <Certifications />
+                <Hobbies />
                 <Contact />
             </Suspense>
         </div>
