@@ -4,46 +4,73 @@ export default function About() {
     return (
         <motion.section
             id="about"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="py-20 px-6 bg-white dark:bg-[#0f172a] text-gray-800 dark:text-gray-300 transition-colors duration-500 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="relative py-16 md:py-24 px-4 sm:px-6 bg-white dark:bg-slate-950 transition-colors duration-500"
         >
-            <motion.div
-                className="max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-            >
-                <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-500">About Me</h2>
-
-
-                <motion.p
-                    className="text-gray-700 dark:text-gray-400 leading-relaxed text-lg transition-colors duration-500"
+            <div className="max-w-4xl mx-auto">
+                {/* Section Header */}
+                <motion.div
+                    className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
+                    transition={{ duration: 0.6 }}
                 >
-                    I’m <span className="font-semibold">Jingrui Feng</span>, an Information Technology and Web Science graduate
-                    from Rensselaer Polytechnic Institute, currently based in <span className="font-semibold">Jersey City, NJ</span>.
-                    I’m passionate about full-stack development and designing efficient, maintainable software solutions that deliver great user experiences.
-                </motion.p>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                        About Me
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
+                </motion.div>
 
-                <motion.p
-                    className="text-gray-700 dark:text-gray-400 leading-relaxed text-lg transition-colors duration-500"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                >
-                    Beyond coding, I explore <span className="font-semibold">AI</span> and <span className="font-semibold">human-computer interaction</span>,
-                    aiming to bridge technical expertise with business and user-focused design. My goal is to build meaningful
-                    technology that connects people, data, and experience seamlessly.
-                </motion.p>
-            </motion.div>
+                {/* Content */}
+                <div className="space-y-8 text-left">
+                    <motion.div
+                        className="prose prose-lg dark:prose-invert max-w-none"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                    >
+                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                            I'm <span className="font-semibold text-gray-900 dark:text-white">Jingrui Feng</span>, an Information Technology and Web Science graduate
+                            from <span className="font-semibold text-blue-600 dark:text-blue-400">Rensselaer Polytechnic Institute</span>, currently based in 
+                            <span className="font-semibold text-gray-900 dark:text-white"> Jersey City, NJ</span>.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="prose prose-lg dark:prose-invert max-w-none"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
+                    >
+                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                            I'm passionate about full-stack development and designing efficient, maintainable software solutions that deliver 
+                            exceptional user experiences. My approach combines technical excellence with thoughtful design to create 
+                            solutions that are both powerful and intuitive.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="prose prose-lg dark:prose-invert max-w-none"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6, duration: 0.6 }}
+                    >
+                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                            Beyond coding, I explore <span className="font-semibold text-purple-600 dark:text-purple-400">AI</span> and 
+                            <span className="font-semibold text-purple-600 dark:text-purple-400"> human-computer interaction</span>, 
+                            aiming to bridge technical expertise with business acumen and user-focused design. My goal is to build meaningful
+                            technology that connects people, data, and experiences seamlessly.
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
         </motion.section>
     );
 }

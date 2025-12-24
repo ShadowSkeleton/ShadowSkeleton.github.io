@@ -1,25 +1,33 @@
+import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Education from "./components/Education";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Certifications from "./components/Certifications";
-import Contact from "./components/Contact";
+
+// Lazy load below-the-fold components for faster initial load
+const About = lazy(() => import("./components/About"));
+const Education = lazy(() => import("./components/Education"));
+const Experience = lazy(() => import("./components/Experience"));
+const Projects = lazy(() => import("./components/Projects"));
+const Skills = lazy(() => import("./components/Skills"));
+const Certifications = lazy(() => import("./components/Certifications"));
+const Contact = lazy(() => import("./components/Contact"));
+
+// Minimal loading fallback (invisible, just to prevent layout shift)
+const LazyLoadFallback = () => null;
 
 function App() {
     return (
-        <div className="font-sans text-gray-800 bg-gradient-to-b from-white via-blue-50 to-blue-100 scroll-smooth">
+        <div className="font-sans text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-950 scroll-smooth min-h-screen">
             <Navbar />
             <Hero />
-            <About />
-            <Education />
-            <Experience />
-            <Projects />
-            <Skills />
-            <Certifications />
-            <Contact />
+            <Suspense fallback={<LazyLoadFallback />}>
+                <About />
+                <Education />
+                <Experience />
+                <Projects />
+                <Skills />
+                <Certifications />
+                <Contact />
+            </Suspense>
         </div>
     );
 }

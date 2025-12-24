@@ -20,74 +20,95 @@ export default function Projects() {
     return (
         <motion.section
             id="projects"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="py-20 px-6 bg-gray-50 dark:bg-[#0f172a] transition-colors duration-500"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-                Projects
-            </h2>
+            <div className="max-w-6xl mx-auto">
+                {/* Section Header */}
+                <motion.div
+                    className="text-center mb-12 md:mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Projects
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
+                </motion.div>
 
-            <div className="max-w-5xl mx-auto flex flex-col gap-10">
-                {sortedProjects.map((p, i) => (
-                    <motion.div
-                        key={i}
-                        className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700
-                       shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.15, duration: 0.6, ease: 'easeOut' }}
-                        whileHover={{
-                            scale: 1.02,
-                            boxShadow: "0 8px 25px rgba(37, 99, 235, 0.15)",
-                        }}
-                    >
-                        {/* Header (title + date) */}
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
-                            <div>
-                                <h3 className="text-2xl font-semibold text-blue-700 dark:text-blue-400">
-                                    {p.title}
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">{p.role}</p>
+                {/* Projects Grid */}
+                <div className="grid gap-8">
+                    {sortedProjects.map((p, i) => (
+                        <motion.div
+                            key={i}
+                            className="group relative p-6 md:p-8 lg:p-10 rounded-2xl bg-white dark:bg-slate-900 
+                                border border-gray-200 dark:border-gray-800
+                                shadow-md hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
+                                transition-all duration-300 overflow-hidden"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            whileHover={{ y: -4 }}
+                        >
+                            {/* Gradient overlay on hover */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-blue-500/0 
+                                group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-blue-500/5 
+                                transition-all duration-500 pointer-events-none" />
+
+                            <div className="relative z-10">
+                                {/* Header */}
+                                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 gap-4">
+                                    <div className="flex-1">
+                                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 
+                                            group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                            {p.title}
+                                        </h3>
+                                        <p className="text-gray-600 dark:text-gray-400 font-medium">{p.role}</p>
+                                    </div>
+                                    <div className="flex-shrink-0 text-right">
+                                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{p.location}</p>
+                                        <p className="text-sm text-gray-400 dark:text-gray-500">{p.date}</p>
+                                    </div>
+                                </div>
+
+                                {/* Details */}
+                                <ul className="space-y-3 mb-6">
+                                    {p.details.map((line, idx) => (
+                                        <li
+                                            key={idx}
+                                            className="text-gray-700 dark:text-gray-300 leading-relaxed 
+                                                flex items-start gap-3 before:content-['▹'] before:text-blue-600 dark:before:text-blue-400 
+                                                before:font-bold before:flex-shrink-0"
+                                        >
+                                            <span>{line}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                {/* Tech stack */}
+                                <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-gray-800">
+                                    {p.tech.map((t, idx) => (
+                                        <span
+                                            key={idx}
+                                            className="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/50
+                                                text-blue-700 dark:text-blue-400 text-sm font-medium rounded-lg
+                                                border border-blue-200 dark:border-blue-900/50
+                                                hover:bg-blue-100 dark:hover:bg-blue-900/70 transition-colors"
+                                        >
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="text-right sm:text-right text-gray-500 dark:text-gray-400 text-sm mt-2 sm:mt-0">
-                                <p>{p.location}</p>
-                                <p>{p.date}</p>
-                            </div>
-                        </div>
-
-                        {/* Details */}
-                        <ul className="text-gray-700 dark:text-gray-300 list-disc list-inside space-y-2 mt-3 leading-relaxed text-base text-left">
-                            {p.details.map((line, idx) => (
-                                <motion.li
-                                    key={idx}
-                                    initial={{ opacity: 0, x: -15 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.05 }}
-                                >
-                                    {line}
-                                </motion.li>
-                            ))}
-                        </ul>
-
-                        {/* Tech stack badges */}
-                        <div className="flex flex-wrap gap-2 mt-5">
-                            {p.tech.map((t, idx) => (
-                                <span
-                                    key={idx}
-                                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30
-                             text-blue-700 dark:text-blue-300 text-sm rounded-full"
-                                >
-                  {t}
-                </span>
-                            ))}
-                        </div>
-                    </motion.div>
-                ))}
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </motion.section>
     );

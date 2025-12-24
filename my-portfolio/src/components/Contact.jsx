@@ -29,41 +29,74 @@ export default function Contact() {
     return (
         <motion.section
             id="contact"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="py-20 px-6 bg-white dark:bg-[#0f172a] text-center transition-colors duration-500"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6 }}
+            className="relative py-16 md:py-24 px-4 sm:px-6 bg-white dark:bg-slate-950 transition-colors duration-500"
         >
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                Contact
-            </h2>
+            <div className="max-w-4xl mx-auto text-center">
+                {/* Section Header */}
+                <motion.div
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Get In Touch
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6" />
+                    <p className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        I'm always open to discussing new opportunities, collaborations, or technical projects. 
+                        Feel free to reach out!
+                    </p>
+                </motion.div>
 
-            <p className="text-gray-700 dark:text-gray-300 mb-8 max-w-lg mx-auto leading-relaxed">
-                I’m always open to discussing new opportunities, collaborations, or
-                technical projects. Feel free to reach out!
-            </p>
+                {/* Contact Links */}
+                <motion.div
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                    {links.map(({ label, href, icon: Icon, style }, i) => (
+                        <motion.a
+                            key={i}
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`group flex items-center justify-center gap-3 px-6 py-4 rounded-xl 
+                                font-semibold transition-all duration-300 shadow-md hover:shadow-xl
+                                ${style}`}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                        >
+                            <Icon size={20} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
+                            <span>{label}</span>
+                        </motion.a>
+                    ))}
+                </motion.div>
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                {links.map(({ label, href, icon: Icon, style }, i) => (
-                    <motion.a
-                        key={i}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg shadow-md font-medium transition-all duration-300 ${style}`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.97 }}
-                    >
-                        <Icon size={20} strokeWidth={2.2} />
-                        {label}
-                    </motion.a>
-                ))}
+                {/* Footer */}
+                <motion.div
+                    className="pt-8 border-t border-gray-200 dark:border-gray-800"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">
+                        © {new Date().getFullYear()} Jingrui Feng. All rights reserved.
+                    </p>
+                </motion.div>
             </div>
-
-            <p className="text-gray-500 dark:text-gray-400 text-sm mt-12">
-                © {new Date().getFullYear()} Jingrui Feng. All rights reserved.
-            </p>
         </motion.section>
     );
 }

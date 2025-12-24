@@ -7,6 +7,23 @@
       <meta name="description" content="Portfolio of Jingrui Feng – Full-Stack Developer passionate about scalable systems, user experience, and AI-driven design." />
 
       <title>Jingrui Feng | Software Developer</title>
+      <script>
+        // Apply dark mode immediately before React loads to prevent FOUC
+        // Defaults to browser's system preference, only uses localStorage if user explicitly set it
+        (function() {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Only use stored preference if it exists (user has manually toggled)
+          // Otherwise default to system preference
+          const isDark = stored !== null ? stored === 'dark' : prefersDark;
+          
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        })();
+      </script>
   </head>
   <body>
     <div id="root"></div>
