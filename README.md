@@ -4,7 +4,7 @@ Welcome to the repository for my personal website. This site serves as my portfo
 
 ## 🌐 Live Website
 
-You can view my personal website here: [https://shadowskeleton.github.io](https://shadowskeleton.github.io)
+You can view my personal website here: [https://shadowskeleton.github.io](https://shadowskeleton.github.io) or [https://jingruifeng.dev](https://jingruifeng.dev)
 
 ## 📁 Project Structure
 
