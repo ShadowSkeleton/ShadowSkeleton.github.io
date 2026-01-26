@@ -59,8 +59,8 @@ export default function Hobbies() {
             id="hobbies"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
             <div className="max-w-6xl mx-auto">
@@ -69,8 +69,8 @@ export default function Hobbies() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Hobbies & Interests
@@ -80,10 +80,10 @@ export default function Hobbies() {
 
                 {/* Coffee Emphasis Banner - Prominent */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    initial={{ opacity: 0, scale: 0.98, y: 15 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
                     className="mb-12 md:mb-16"
                 >
                     <div className="relative overflow-hidden rounded-2xl 
@@ -132,16 +132,16 @@ export default function Hobbies() {
                         return (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                                transition={{ delay: i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                                 whileHover={{ y: -6, scale: 1.02 }}
                                 className={`group relative p-6 md:p-8 rounded-2xl 
                                     ${hobby.bgColor} 
                                     border-2 ${hobby.borderColor}
                                     shadow-lg hover:shadow-2xl 
-                                    transition-all duration-300`}
+                                    transition-all duration-300 will-change-transform`}
                             >
                                 {/* Icon */}
                                 <motion.div
@@ -176,10 +176,10 @@ export default function Hobbies() {
                                         return (
                                             <motion.li
                                                 key={idx}
-                                                initial={{ opacity: 0, x: -10 }}
+                                                initial={{ opacity: 0, x: -5 }}
                                                 whileInView={{ opacity: 1, x: 0 }}
                                                 viewport={{ once: true }}
-                                                transition={{ delay: i * 0.15 + idx * 0.1 }}
+                                                transition={{ delay: i * 0.08 + idx * 0.05 }}
                                                 className={`text-sm md:text-base text-gray-600 dark:text-gray-400 
                                                     flex items-start gap-3
                                                     before:content-['▹'] 

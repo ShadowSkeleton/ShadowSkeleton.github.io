@@ -1,20 +1,30 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import experience from "../data/experience.json";
 
-function parseDate(dateString) {
+function parseEndDate(dateString) {
     const months = {
         Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
         Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
     };
-    const match = dateString.match(/([A-Za-z]{3}) (\d{4})/);
-    if (!match) return new Date(0);
+    // Match the end date (second date after the "–" or "-" separator)
+    // Format: "MMM YYYY – MMM YYYY" or "MMM YYYY - MMM YYYY" or "MMM YYYY – Present"
+    const match = dateString.match(/[–-]\s*([A-Za-z]{3})\s*(\d{4})/);
+    if (!match) {
+        // If no end date found (e.g., "Present"), return a far future date to sort it first
+        if (dateString.includes("Present")) {
+            return new Date(9999, 11);
+        }
+        return new Date(0);
+    }
     const [, month, year] = match;
     return new Date(parseInt(year), months[month]);
 }
 
 export default function Experience() {
-    const sortedExperience = [...experience].sort(
-        (a, b) => parseDate(b.date) - parseDate(a.date)
+    const sortedExperience = useMemo(
+        () => [...experience].sort((a, b) => parseEndDate(b.date) - parseEndDate(a.date)),
+        []
     );
 
     return (
@@ -22,8 +32,8 @@ export default function Experience() {
             id="experience"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-white dark:bg-slate-950 transition-colors duration-500"
         >
             <div className="max-w-6xl mx-auto">
@@ -32,8 +42,8 @@ export default function Experience() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Professional Experience
@@ -54,10 +64,10 @@ export default function Experience() {
                             <motion.div
                                 key={i}
                                 className="relative pl-16 md:pl-0 md:flex md:items-center md:gap-8"
-                                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                                transition={{ delay: i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             >
                                 {/* Timeline Dot */}
                                 <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full 
@@ -71,7 +81,7 @@ export default function Experience() {
                                         className="group relative p-6 md:p-8 rounded-2xl bg-gray-50 dark:bg-slate-900 
                                             border border-gray-200 dark:border-gray-800
                                             shadow-lg hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
-                                            transition-all duration-300"
+                                            transition-all duration-300 will-change-transform"
                                         whileHover={{ y: -4 }}
                                     >
                                         {/* Date (for mobile) */}

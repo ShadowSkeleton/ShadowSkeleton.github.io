@@ -20,8 +20,8 @@ export default function Certifications() {
             id="certifications"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
             <div className="max-w-4xl mx-auto">
@@ -30,8 +30,8 @@ export default function Certifications() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Certifications
@@ -44,15 +44,15 @@ export default function Certifications() {
                     {certs.map((c, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                            transition={{ delay: i * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             whileHover={{ y: -4 }}
                             className="group relative p-6 md:p-8 bg-white dark:bg-slate-900 
                                 border border-gray-200 dark:border-gray-800
                                 rounded-2xl shadow-md hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
-                                transition-all duration-300"
+                                transition-all duration-300 will-change-transform"
                         >
                             {/* Badge Icon */}
                             <div className="flex items-start justify-between mb-4">

@@ -1,29 +1,15 @@
 import { motion } from "framer-motion";
 import projects from "../data/projects.json";
 
-function parseDate(dateString) {
-    const months = {
-        Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-        Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
-    };
-    const match = dateString.match(/([A-Za-z]{3}) (\d{4})/);
-    if (!match) return new Date(0);
-    const [_, month, year] = match;
-    return new Date(parseInt(year), months[month]);
-}
-
 export default function Projects() {
-    const sortedProjects = [...projects].sort(
-        (a, b) => parseDate(b.date) - parseDate(a.date)
-    );
 
     return (
         <motion.section
             id="projects"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
             <div className="max-w-6xl mx-auto">
@@ -32,8 +18,8 @@ export default function Projects() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Projects
@@ -43,17 +29,17 @@ export default function Projects() {
 
                 {/* Projects Grid */}
                 <div className="grid gap-8">
-                    {sortedProjects.map((p, i) => (
+                    {projects.map((p, i) => (
                         <motion.div
                             key={i}
                             className="group relative p-6 md:p-8 lg:p-10 rounded-2xl bg-white dark:bg-slate-900 
                                 border border-gray-200 dark:border-gray-800
                                 shadow-md hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
-                                transition-all duration-300 overflow-hidden"
-                            initial={{ opacity: 0, y: 40 }}
+                                transition-all duration-300 overflow-hidden will-change-transform"
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                            transition={{ delay: i * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             whileHover={{ y: -4 }}
                         >
                             {/* Gradient overlay on hover */}
@@ -63,18 +49,12 @@ export default function Projects() {
 
                             <div className="relative z-10">
                                 {/* Header */}
-                                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 gap-4">
-                                    <div className="flex-1">
-                                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 
-                                            group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                            {p.title}
-                                        </h3>
-                                        <p className="text-gray-600 dark:text-gray-400 font-medium">{p.role}</p>
-                                    </div>
-                                    <div className="flex-shrink-0 text-right">
-                                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{p.location}</p>
-                                        <p className="text-sm text-gray-400 dark:text-gray-500">{p.date}</p>
-                                    </div>
+                                <div className="mb-6">
+                                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 
+                                        group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                        {p.title}
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400 font-medium">{p.role}</p>
                                 </div>
 
                                 {/* Details */}

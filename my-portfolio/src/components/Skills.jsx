@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
-import { Code, Layers, Database, Wrench } from "lucide-react"; // icons
+import { Code, Layers, Database, Brain } from "lucide-react"; // icons
 
 export default function Skills() {
     const skills = [
         {
             category: "Languages",
-            items: ["Python", "C", "C++", "Java", "JavaScript", "TypeScript", "SQL", "PHP"],
+            items: ["Python", "C", "C++", "Java", "JavaScript", "TypeScript", "SQL", "PHP", "HTML", "CSS"],
             icon: Code,
         },
         {
             category: "Frameworks",
-            items: ["React", "Node.js", "Express.js", "Flutter"],
+            items: ["React.js", "Node.js", "Express.js", "Flutter"],
             icon: Layers,
         },
         {
-            category: "Databases",
-            items: ["PostgreSQL", "MongoDB", "MySQL"],
+            category: "Tools & Databases",
+            items: ["PostgreSQL", "MongoDB", "Git", "Docker", "REST API"],
             icon: Database,
         },
         {
-            category: "Tools",
-            items: ["Git", "Docker", "REST APIs", "Agile", "Excel"],
-            icon: Wrench,
+            category: "Concepts",
+            items: ["Frontend", "Backend", "Fullstack", "API", "Object-Oriented Programming", "Agile Methodology"],
+            icon: Brain,
         },
     ];
 
@@ -30,8 +30,8 @@ export default function Skills() {
             id="skills"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
             <div className="max-w-6xl mx-auto">
@@ -40,8 +40,8 @@ export default function Skills() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Technical Skills
@@ -56,15 +56,15 @@ export default function Skills() {
                         return (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                                transition={{ delay: idx * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                                 whileHover={{ y: -4 }}
                                 className="group relative p-6 md:p-8 bg-white dark:bg-slate-900 
                                     border border-gray-200 dark:border-gray-800
                                     rounded-2xl shadow-md hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
-                                    transition-all duration-300"
+                                    transition-all duration-300 will-change-transform"
                             >
                                 {/* Icon + Header */}
                                 <div className="flex items-center gap-4 mb-6">
@@ -87,10 +87,10 @@ export default function Skills() {
                                     {skill.items.map((item, i) => (
                                         <motion.span
                                             key={i}
-                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            initial={{ opacity: 0, scale: 0.9 }}
                                             whileInView={{ opacity: 1, scale: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ delay: idx * 0.1 + i * 0.05 }}
+                                            transition={{ delay: idx * 0.05 + i * 0.02 }}
                                             whileHover={{ scale: 1.05 }}
                                             className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 
                                                 dark:from-blue-950/50 dark:to-purple-950/50

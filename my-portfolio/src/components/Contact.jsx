@@ -31,8 +31,8 @@ export default function Contact() {
             id="contact"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-white dark:bg-slate-950 transition-colors duration-500"
         >
             <div className="max-w-4xl mx-auto text-center">
@@ -41,8 +41,8 @@ export default function Contact() {
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Get In Touch
@@ -59,8 +59,8 @@ export default function Contact() {
                     className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ delay: 0.1, duration: 0.4 }}
                 >
                     {links.map(({ label, href, icon: Icon, style }, i) => (
                         <motion.a
@@ -76,7 +76,7 @@ export default function Contact() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                            transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
                         >
                             <Icon size={20} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
                             <span>{label}</span>
@@ -90,7 +90,7 @@ export default function Contact() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
+                    transition={{ delay: 0.25, duration: 0.4 }}
                 >
                     <p className="text-gray-500 dark:text-gray-400 text-sm">
                         © {new Date().getFullYear()} Jingrui Feng. All rights reserved.

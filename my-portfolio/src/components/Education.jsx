@@ -6,12 +6,14 @@ export default function Education() {
             school: "New York University (NYU)",
             degree: "M.S. in Information Systems",
             period: "Expected May 2027",
+            coursework:
+                "Algorithm, Operating Systems, Digital Strategy, DevOps & Agile Methodologies, Data Comm & Networks, Operation Management",
             color: "violet",
         },
         {
             school: "Rensselaer Polytechnic Institute (RPI)",
             degree: "B.S. in Information Technology and Web Science",
-            gpa: "GPA: 3.61 / 4.00",
+            // gpa: "GPA: 3.61 / 4.00",
             period: "Aug 2021 – May 2025",
             coursework:
                 "Data Structures, Algorithms, Operating Systems, Database Systems, Network Programming, Parallel Programming, Artificial Intelligence, and Web Systems Development",
@@ -24,8 +26,8 @@ export default function Education() {
             id="education"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4 }}
             className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
         >
             <div className="max-w-5xl mx-auto">
@@ -34,8 +36,8 @@ export default function Education() {
                     className="text-center mb-12 md:mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                    transition={{ duration: 0.4 }}
                 >
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Education
@@ -48,15 +50,15 @@ export default function Education() {
                     {education.map((edu, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                            transition={{ delay: i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             whileHover={{ y: -4 }}
                             className="group relative p-6 md:p-8 lg:p-10 rounded-2xl bg-white dark:bg-slate-900
                                 border border-gray-200 dark:border-gray-800
                                 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5
-                                transition-all duration-300"
+                                transition-all duration-300 will-change-transform"
                         >
                             {/* School Name and Degree */}
                             <div className="mb-4">

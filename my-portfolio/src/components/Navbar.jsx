@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Moon, Sun } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import useTheme from "../hooks/useTheme";
@@ -7,31 +7,49 @@ export default function NavBar() {
     const [active, setActive] = useState("");
     const [scrolled, setScrolled] = useState(false);
     const { theme, toggleTheme } = useTheme();
+    const scrollTimeoutRef = useRef(null);
 
-    // Handle scroll for navbar styling
+    // Throttled scroll handler for navbar styling
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            if (scrollTimeoutRef.current) {
+                cancelAnimationFrame(scrollTimeoutRef.current);
+            }
+            scrollTimeoutRef.current = requestAnimationFrame(() => {
+                setScrolled(window.scrollY > 20);
+            });
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (scrollTimeoutRef.current) {
+                cancelAnimationFrame(scrollTimeoutRef.current);
+            }
+        };
     }, []);
 
-    // observe which section is active
+    // Observe which section is active with throttled updates
     useEffect(() => {
         const sections = document.querySelectorAll("section");
+        let rafId = null;
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActive(entry.target.id);
-                    }
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(() => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setActive(entry.target.id);
+                        }
+                    });
                 });
             },
-            { threshold: 0.3, rootMargin: "-100px 0px -66% 0px" }
+            { threshold: 0.2, rootMargin: "-80px 0px -60% 0px" }
         );
         sections.forEach((section) => observer.observe(section));
-        return () => sections.forEach((section) => observer.unobserve(section));
+        return () => {
+            sections.forEach((section) => observer.unobserve(section));
+            if (rafId) cancelAnimationFrame(rafId);
+        };
     }, []);
 
     const links = [

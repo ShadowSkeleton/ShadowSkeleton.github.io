@@ -14,17 +14,30 @@
     "tech": ["C", "C++", "Flutter", "Software Architecture", "Cross-Platform Development"]
   },
   {
-    "title": "Undergraduate Teaching Assistant – Rensselaer Polytechnic Institute",
+    "title": "Undergraduate Teaching Assistant – Operating Systems",
     "organization": "Rensselaer Polytechnic Institute",
     "location": "Troy, NY",
-    "date": "Aug 2024 – Dec 2024",
+    "date": "Jan 2024 – May 2025",
     "role": "Undergraduate Teaching Assistant, Operating Systems",
     "details": [
-      "Supported 200+ students in understanding core OS concepts including process synchronization, CPU scheduling, and memory management.",
-      "Assisted students in debugging C-based multithreaded programs using POSIX threads and guided exam preparation.",
-      "Collaborated with the professor on grading and lab design, improving student comprehension and course logistics."
+      "Supported over 100 students in system-level programming, demystifying complex concepts such as CPU scheduling, process synchronization via mutexes/semaphores, and virtual memory paging techniques.",
+      "Facilitated weekly office hours and exam reviews, actively debugging complex C implementations while providing constructive feedback that significantly enhanced student code quality and independent reasoning.",
+      "Guided students through hands-on C programming labs focused on multithreading, process management, and memory allocation, helping them understand low-level system interactions."
     ],
-    "tech": ["C", "POSIX Threads", "Operating Systems"]
+    "tech": ["C", "Operating Systems", "Multithreading", "System Programming"]
+  },
+  {
+    "title": "Undergraduate Teaching Assistant – Computer Science I",
+    "organization": "Rensselaer Polytechnic Institute",
+    "location": "Troy, NY",
+    "date": "Sep 2024 – Dec 2024",
+    "role": "Undergraduate Teaching Assistant, Computer Science I",
+    "details": [
+      "Mentored students in foundational programming concepts, reinforcing core paradigms including recursion, data structures, and algorithmic logic to foster robust computational thinking and measurably improve code fluency.",
+      "Facilitated weekly office hours and exam reviews, actively debugging Python implementations while providing constructive feedback that significantly enhanced student code quality and independent problem-solving skills.",
+      "Conducted one-on-one tutoring sessions to help students grasp fundamental programming principles and develop strong problem-solving methodologies."
+    ],
+    "tech": ["Python", "Data Structures", "Algorithms", "Recursion"]
   },
   {
     "title": "Research Assistant – Chinese Academy of Sciences",
