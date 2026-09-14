@@ -4,18 +4,19 @@
     <meta charset="UTF-8" />
       <link rel="icon" type="image/png" href="/logo.png" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="Portfolio of Jingrui Feng – Full-Stack Developer passionate about scalable systems, user experience, and AI-driven design." />
+      <meta name="description" content="Jingrui Feng’s software development portfolio: full-stack web applications, native iOS apps, and a focus on usable, reliable systems." />
 
       <title>Jingrui Feng | Software Developer</title>
       <script>
         // Apply dark mode immediately before React loads to prevent FOUC
         // Defaults to browser's system preference, only uses localStorage if user explicitly set it
         (function() {
-          const stored = localStorage.getItem('theme');
+          let stored = null;
+          try { stored = localStorage.getItem('theme'); } catch { /* Storage may be unavailable. */ }
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           // Only use stored preference if it exists (user has manually toggled)
           // Otherwise default to system preference
-          const isDark = stored !== null ? stored === 'dark' : prefersDark;
+          const isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
           
           if (isDark) {
             document.documentElement.classList.add('dark');
@@ -24,11 +25,11 @@
           }
         })();
       </script>
-    <script type="module" crossorigin src="/assets/index-B7IJqm7d.js"></script>
+    <script type="module" crossorigin src="/assets/index-CA2tYjla.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/react-vendor-X-tRH5j4.js">
-    <link rel="modulepreload" crossorigin href="/assets/animation-vendor-Cjj885iS.js">
-    <link rel="modulepreload" crossorigin href="/assets/icons-vendor-UBqiSUju.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-ggtx9xtQ.css">
+    <link rel="modulepreload" crossorigin href="/assets/animation-vendor-By8gkoJA.js">
+    <link rel="modulepreload" crossorigin href="/assets/icons-vendor-Bt6YQRm7.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-Dm35etuf.css">
   </head>
   <body>
     <div id="root"></div>
