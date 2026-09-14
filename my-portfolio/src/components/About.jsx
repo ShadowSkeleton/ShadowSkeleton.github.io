@@ -1,77 +1,16 @@
-import { motion } from "framer-motion";
+import useLanguage from "../hooks/useLanguage";
+import { Code2, Users } from "lucide-react";
 
 export default function About() {
-    return (
-        <motion.section
-            id="about"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
-            transition={{ duration: 0.4 }}
-            className="relative py-16 md:py-24 px-4 sm:px-6 bg-white dark:bg-slate-950 transition-colors duration-500"
-        >
-            <div className="max-w-4xl mx-auto">
-                {/* Section Header */}
-                <motion.div
-                    className="text-center mb-12 md:mb-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                    transition={{ duration: 0.4 }}
-                >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                        About Me
-                    </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
-                </motion.div>
-
-                {/* Content */}
-                <div className="space-y-8 text-left">
-                    <motion.div
-                        className="prose prose-lg dark:prose-invert max-w-none"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                        transition={{ delay: 0.1, duration: 0.4 }}
-                    >
-                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                            I'm <span className="font-semibold text-gray-900 dark:text-white">Jingrui Feng</span>, an Information Technology and Web Science graduate
-                            from <span className="font-semibold text-blue-600 dark:text-blue-400">Rensselaer Polytechnic Institute</span>, currently pursuing my Master's degree in 
-                            Information Systems at <span className="font-semibold text-blue-600 dark:text-blue-400">New York University</span>, and based in 
-                            <span className="font-semibold text-gray-900 dark:text-white"> Jersey City, NJ</span>.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        className="prose prose-lg dark:prose-invert max-w-none"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                        transition={{ delay: 0.15, duration: 0.4 }}
-                    >
-                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                            I'm passionate about full-stack development and designing efficient, maintainable software solutions that deliver 
-                            exceptional user experiences. My approach combines technical excellence with thoughtful design to create 
-                            solutions that are both powerful and intuitive.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        className="prose prose-lg dark:prose-invert max-w-none"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                        transition={{ delay: 0.2, duration: 0.4 }}
-                    >
-                        <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                            Beyond coding, I explore <span className="font-semibold text-purple-600 dark:text-purple-400">AI</span> and 
-                            <span className="font-semibold text-purple-600 dark:text-purple-400"> human-computer interaction</span>, 
-                            aiming to bridge technical expertise with business acumen and user-focused design. My goal is to build meaningful
-                            technology that connects people, data, and experiences seamlessly.
-                        </p>
-                    </motion.div>
-                </div>
+    const { t, language } = useLanguage();
+    return <section id="about" className="section">
+        <div className="shell about-grid">
+            <div><p className="eyebrow">{t("01 / A LITTLE ABOUT ME")}</p><h2>{t("About Me")}</h2><div className="about-interests"><span><Code2 size={17} />{t("Full-stack development")}</span><span><Users size={17} />{t("Human-computer interaction")}</span></div></div>
+            <div className="about-copy">
+                <p>{language === "zh" ? <>我是 <strong>Jingrui Feng</strong>，毕业于<strong>伦斯勒理工学院</strong>信息技术与 Web 科学专业，目前在<strong>纽约大学</strong>攻读信息系统硕士学位，现居<strong>新泽西州泽西市</strong>。</> : <>I’m <strong>Jingrui Feng</strong>, a software developer based in <strong>{t("Jersey City, NJ")}</strong>. I earned my B.S. in Information Technology and Web Science at <strong>{t("Rensselaer Polytechnic Institute")}</strong> and am now pursuing an M.S. in Information Systems at <strong>{t("New York University")}</strong>.</>}</p>
+                <p>{t("I build full-stack applications and native iOS apps, with a focus on clear interfaces, reliable systems, and maintainable code. My work spans personal finance, order management, and robotics workflows.")}</p>
+                <p>{language === "zh" ? <>我关注<strong>人机交互</strong>，也关心技术决策如何影响日常体验。我喜欢把复杂的工作流程转化为直观易用的工具。</> : <>I’m interested in <strong>{t("human-computer interaction")}</strong> and how technical decisions shape everyday experiences. I like turning complex workflows into tools that feel straightforward to use.</>}</p>
             </div>
-        </motion.section>
-    );
+        </div>
+    </section>;
 }

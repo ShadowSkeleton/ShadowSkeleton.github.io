@@ -1,68 +1,45 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function storedTheme() {
+    try { const theme = localStorage.getItem("theme"); return theme === "dark" || theme === "light" ? theme : null; }
+    catch { return null; }
+}
+const systemTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 export default function useTheme() {
-    const hasUserToggled = useRef(false);
-    
-    const [theme, setTheme] = useState(() => {
-        // Default to system preference unless user has explicitly set a preference
-        // This should match the inline script in index.html
-        if (typeof window !== "undefined") {
-            const stored = localStorage.getItem("theme");
-            if (stored !== null) {
-                hasUserToggled.current = true;
-                return stored;
-            }
-            // Use system preference as default
-            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            return prefersDark ? "dark" : "light";
-        }
-        return "light";
-    });
-
+    const manual = useRef(storedTheme() !== null);
+    const [theme, setTheme] = useState(() => storedTheme() ?? systemTheme());
+    const appliedTheme = useRef(theme);
     useEffect(() => {
-        // Apply theme class to match current theme state
-        const root = window.document.documentElement;
-        
-        if (theme === "dark") {
-            root.classList.add("dark");
-        } else {
-            root.classList.remove("dark");
-        }
-        
-        // Only save to localStorage if user has manually toggled
-        // This preserves the default system preference behavior
-        if (hasUserToggled.current) {
-            localStorage.setItem("theme", theme);
-        }
-    }, [theme]);
-
-    // Also listen to system preference changes when no manual preference is set
-    useEffect(() => {
-        if (hasUserToggled.current) return; // Don't listen if user has manually set preference
-        
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        
-        const handleChange = (e) => {
-            // Only update if theme actually changed
-            const newTheme = e.matches ? "dark" : "light";
-            setTheme((prev) => prev !== newTheme ? newTheme : prev);
+        const root = document.documentElement;
+        const animate = appliedTheme.current !== theme && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (animate) root.classList.add("theme-transition");
+        root.classList.toggle("dark", theme === "dark");
+        appliedTheme.current = theme;
+        const timer = animate ? window.setTimeout(() => root.classList.remove("theme-transition"), 900) : null;
+        return () => {
+            window.clearTimeout(timer);
+            root.classList.remove("theme-transition");
         };
-        
-        // Modern browsers
-        if (mediaQuery.addEventListener) {
-            mediaQuery.addEventListener("change", handleChange);
-            return () => mediaQuery.removeEventListener("change", handleChange);
-        } else {
-            // Fallback for older browsers
-            mediaQuery.addListener(handleChange);
-            return () => mediaQuery.removeListener(handleChange);
-        }
+    }, [theme]);
+    useEffect(() => {
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        const systemChange = () => { if (!manual.current) setTheme(systemTheme()); };
+        const storageChange = event => {
+            if (event.key !== "theme" && event.key !== null) return;
+            const saved = storedTheme();
+            manual.current = saved !== null;
+            setTheme(saved ?? systemTheme());
+        };
+        media.addEventListener("change", systemChange);
+        window.addEventListener("storage", storageChange);
+        return () => { media.removeEventListener("change", systemChange); window.removeEventListener("storage", storageChange); };
     }, []);
-
     const toggleTheme = () => {
-        hasUserToggled.current = true;
-        setTheme(theme === "dark" ? "light" : "dark");
+        manual.current = true;
+        const next = theme === "dark" ? "light" : "dark";
+        try { localStorage.setItem("theme", next); } catch { /* Theme still works without storage. */ }
+        setTheme(next);
     };
-
     return { theme, toggleTheme };
 }

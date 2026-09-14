@@ -1,8 +1,9 @@
-import { lazy, Suspense } from "react";
+import useLanguage from "./hooks/useLanguage";
+import { lazy, Suspense, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import "./App.css";
 
-// Lazy load below-the-fold components for faster initial load
 const About = lazy(() => import("./components/About"));
 const Education = lazy(() => import("./components/Education"));
 const Experience = lazy(() => import("./components/Experience"));
@@ -12,26 +13,33 @@ const Certifications = lazy(() => import("./components/Certifications"));
 const Hobbies = lazy(() => import("./components/Hobbies"));
 const Contact = lazy(() => import("./components/Contact"));
 
-// Minimal loading fallback (invisible, just to prevent layout shift)
-const LazyLoadFallback = () => null;
+export default function App() {
+    const { t } = useLanguage();
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (!hash) return;
+        const observer = new MutationObserver(scrollToSection);
+        function scrollToSection() {
+            if (window.location.hash !== hash) { observer.disconnect(); return; }
+            const target = document.getElementById(hash.slice(1));
+            if (target) {
+                target.scrollIntoView({ behavior: "instant" });
+                observer.disconnect();
+            }
+        }
+        observer.observe(document.getElementById("main"), { childList: true, subtree: true });
+        scrollToSection();
+        return () => observer.disconnect();
+    }, []);
 
-function App() {
-    return (
-        <div className="font-sans text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-950 scroll-smooth min-h-screen w-full max-w-full overflow-x-hidden">
-            <Navbar />
+    return <>
+        <a className="skip-link" href="#main">{t("Skip to content")}</a>
+        <Navbar />
+        <main id="main" tabIndex={-1}>
             <Hero />
-            <Suspense fallback={<LazyLoadFallback />}>
-                <About />
-                <Education />
-                <Experience />
-                <Projects />
-                <Skills />
-                <Certifications />
-                <Hobbies />
-                <Contact />
+            <Suspense fallback={<div className="section shell" role="status">{t("Loading portfolio…")}</div>}>
+                <About /><Education /><Experience /><Projects /><Skills /><Certifications /><Hobbies /><Contact />
             </Suspense>
-        </div>
-    );
+        </main>
+    </>;
 }
-
-export default App;

@@ -6,12 +6,19 @@
     "date": "Sep 2023 – Dec 2023",
     "role": "Software Engineer Intern",
     "details": [
-      "Identified limitations in the legacy C-based codebase that constrained adaptability to modern frameworks.",
-      "Proposed and implemented migration to Flutter, modernizing the UI for laundry machine touch panels and enabling cross-platform deployment across Linux, Windows, and macOS.",
-      "Improved development efficiency by 50% and ensured hardware communication reliability through optimized Flutter plugin integration.",
-      "Collaborated with overseas clients to align project goals, resolve deployment issues, and maintain service continuity during system migration."
+      "Migrated laundry touch-panel UIs from a legacy C codebase to Flutter, consolidating panel-specific implementations into a shared cross-platform build and reducing per-screen development time by 50%.",
+      "Built a reusable Flutter UI component library that standardized implementation across laundry touch-panel screens and eliminated duplicated layout work.",
+      "Enabled cross-platform deployment across Linux, Windows, and macOS and ensured hardware communication reliability through optimized Flutter plugin integration.",
+      "Worked with overseas client teams to translate requirements into UI changes and diagnose deployment issues during the Flutter migration."
     ],
-    "tech": ["C", "C++", "Flutter", "Software Architecture", "Cross-Platform Development"]
+    "tech": [
+      "C",
+      "C++",
+      "Flutter",
+      "Software Architecture",
+      "Cross-Platform Development"
+    ],
+    "employer": "haier"
   },
   {
     "title": "Undergraduate Teaching Assistant – Operating Systems",
@@ -20,11 +27,18 @@
     "date": "Jan 2024 – May 2025",
     "role": "Undergraduate Teaching Assistant, Operating Systems",
     "details": [
-      "Supported over 100 students in system-level programming, demystifying complex concepts such as CPU scheduling, process synchronization via mutexes/semaphores, and virtual memory paging techniques.",
-      "Facilitated weekly office hours and exam reviews, actively debugging complex C implementations while providing constructive feedback that significantly enhanced student code quality and independent reasoning.",
+      "Supported 100+ students across Computer Science I and Operating Systems over 3 semesters, covering C, Python, recursion, data structures, CPU scheduling, process synchronization, and virtual memory.",
+      "Led weekly office hours and exam reviews, mentoring students on programming and systems concepts while creating reference solutions for course assignments.",
+      "Graded system-level programming assignments and provided written feedback, identifying recurring student challenges and sharing them with the lead instructor to improve review topics and lecture coverage.",
       "Guided students through hands-on C programming labs focused on multithreading, process management, and memory allocation, helping them understand low-level system interactions."
     ],
-    "tech": ["C", "Operating Systems", "Multithreading", "System Programming"]
+    "tech": [
+      "C",
+      "Operating Systems",
+      "Multithreading",
+      "System Programming"
+    ],
+    "employer": "rpi"
   },
   {
     "title": "Undergraduate Teaching Assistant – Computer Science I",
@@ -33,11 +47,17 @@
     "date": "Sep 2024 – Dec 2024",
     "role": "Undergraduate Teaching Assistant, Computer Science I",
     "details": [
-      "Mentored students in foundational programming concepts, reinforcing core paradigms including recursion, data structures, and algorithmic logic to foster robust computational thinking and measurably improve code fluency.",
-      "Facilitated weekly office hours and exam reviews, actively debugging Python implementations while providing constructive feedback that significantly enhanced student code quality and independent problem-solving skills.",
+      "Mentored students in foundational programming concepts, including Python, recursion, data structures, and algorithmic logic.",
+      "Led weekly office hours and exam reviews, mentoring students on programming concepts while creating reference solutions for course assignments.",
       "Conducted one-on-one tutoring sessions to help students grasp fundamental programming principles and develop strong problem-solving methodologies."
     ],
-    "tech": ["Python", "Data Structures", "Algorithms", "Recursion"]
+    "tech": [
+      "Python",
+      "Data Structures",
+      "Algorithms",
+      "Recursion"
+    ],
+    "employer": "rpi"
   },
   {
     "title": "Research Assistant – Chinese Academy of Sciences",
@@ -50,6 +70,12 @@
       "Implemented small-scale experiments to evaluate algorithm performance in text and vision tasks.",
       "Collaborated with a research professor to design experiments connecting theoretical and applied ML concepts."
     ],
-    "tech": ["Python", "PyTorch", "Transformer Models", "Machine Learning"]
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Transformer Models",
+      "Machine Learning"
+    ],
+    "employer": "cas"
   }
 ]

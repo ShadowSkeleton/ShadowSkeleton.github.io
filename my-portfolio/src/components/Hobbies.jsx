@@ -1,208 +1,233 @@
-import { motion } from "framer-motion";
-import { Coffee, Gamepad2, Sparkles, Droplet, FlaskConical } from "lucide-react";
+import useLanguage from "../hooks/useLanguage";
+import { useEffect, useRef, useState } from "react";
+import { Coffee, Camera, Gamepad2, Cpu, ArrowUpRight, Expand, X, ChevronLeft, ChevronRight, Watch, Speaker, CircuitBoard, Droplets, Puzzle } from "lucide-react";
 
-export default function Hobbies() {
-    const hobbies = [
-        {
-            icon: Coffee,
-            title: "Specialty Coffee",
-            description: "Passionate about exploring the world of specialty coffee, focusing on different brew methods and experimentation.",
-            details: [
-                "Experimenting with Espresso and Filter coffee methods",
-                "Exploring different origins and processing methods",
-                "Perfecting extraction techniques and ratios",
-                "Appreciating the nuances of flavor profiles"
-            ],
-            color: "from-amber-500 to-orange-600",
-            bgColor: "bg-amber-50 dark:bg-amber-950/20",
-            borderColor: "border-amber-200 dark:border-amber-900/50",
-            iconBg: "bg-amber-100 dark:bg-amber-900/40",
-            iconColor: "text-amber-700 dark:text-amber-400",
-            highlight: true
-        },
-        {
-            icon: Gamepad2,
-            title: "Video Games",
-            description: "Enjoying immersive gaming experiences and exploring different genres.",
-            details: [
-                "Rainbow Six Siege",
-                "Battlefield",
-                "Overwatch",
-                "Independent games"
-            ],
-            color: "from-purple-500 to-pink-600",
-            bgColor: "bg-purple-50 dark:bg-purple-950/20",
-            borderColor: "border-purple-200 dark:border-purple-900/50",
-            iconBg: "bg-purple-100 dark:bg-purple-900/40",
-            iconColor: "text-purple-700 dark:text-purple-400",
-            highlight: false
-        },
-        {
-            icon: Sparkles,
-            title: "Latest Technology",
-            description: "Staying updated with cutting-edge technology products and innovations.",
-            details: [
-                "Exploring new gadgets and devices",
-                "Following tech trends and reviews"
-            ],
-            color: "from-blue-500 to-cyan-600",
-            bgColor: "bg-blue-50 dark:bg-blue-950/20",
-            borderColor: "border-blue-200 dark:border-blue-900/50",
-            iconBg: "bg-blue-100 dark:bg-blue-900/40",
-            iconColor: "text-blue-700 dark:text-blue-400",
-            highlight: false
+const brewMethods = {
+    "Pour-over": {
+        title: "A little more curious with every brew.",
+        description: "Right now, I’m refining my pour-over technique, trying new recipes, and getting to know different coffees through taste.",
+    },
+    Espresso: {
+        title: "Taking the time to dial it in.",
+        description: "I enjoy the hands-on ritual of the Flair 58: experimenting with ratios and extraction, then slowing down to taste the result.",
+    },
+};
+const roasters = [
+    { name: "SEY", href: "https://www.seycoffee.com/" },
+    { name: "Onyx", href: "https://onyxcoffeelab.com/" },
+    { name: "ilse", href: "https://ilsecoffee.com/" },
+    { name: "Devoción", href: "https://www.devocion.com/" },
+];
+const games = [
+    // Publisher asset: https://www.ubisoft.com/en-us/game/rainbow-six/siege
+    { name: "Rainbow Six Siege", color: "siege", logo: "data:image/png;base64,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" },
+    // Publisher asset: https://www.ea.com/games/battlefield
+    { name: "Battlefield", color: "battlefield", logo: "data:image/png;base64,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" },
+    // Publisher asset: https://overwatch.blizzard.com/en-us/
+    { name: "Overwatch", color: "overwatch", logo: "data:image/png;base64,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" },
+    { name: "Independent games", color: "indie" },
+];
+const technologyInterests = [
+    { name: "Cameras", detail: "Optics, sensors, and new ways to capture a moment.", icon: Camera },
+    { name: "Wearables", detail: "Small devices that fit naturally into everyday life.", icon: Watch },
+    { name: "Audio", detail: "Speakers, headphones, and the details in the sound.", icon: Speaker },
+    { name: "PC hardware", detail: "Graphics, cooling, and what makes a system run well.", icon: CircuitBoard },
+];
+const gear = {
+    grinder: { name: "LAGOM 01", maker: "OPTION-O", detail: "102 mm MIZEN blind burrs" },
+    v60: { name: "V60 NEO", maker: "HARIO", detail: "Pour-over" },
+    orea: { name: "O1 + SWITCH", maker: "OREA", detail: "Pour-over & immersion" },
+    flair: { name: "Flair 58", maker: "FLAIR", detail: "Manual espresso" },
+};
+
+// Minimal product line studies, based on the supplied reference silhouettes.
+function GearSketch({ type }) {
+    return <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {type === "grinder" && <>
+            <path d="M65 103c-22-5-47 0-47 6s34 9 72 3c5-1 7-3 7-5M18 109v5c0 8 79 8 79-2v-5" />
+            <path d="M67 31h25q4 0 4 4v69c0 8-33 8-33 0V78M29 32V18c8-3 29-3 38 0v14M27 34c0-4 40-4 40 0v42c-9 5-31 5-40 0zM27 48c9 3 31 3 40 0M27 56h-5v7h5" />
+            <path d="M29 32h38M32 31v-4m4 4v-3m4 3v-4m4 4v-3m4 3v-4m4 4v-3m4 3v-4m4 4v-3m4 3v-4M68 34h25" opacity=".55" />
+            <circle cx="81" cy="91" r="3.5" /><circle cx="81" cy="101" r="3.5" />
+        </>}
+        {type === "v60" && <>
+            <ellipse cx="60" cy="33" rx="45" ry="6" /><ellipse cx="60" cy="33" rx="40" ry="3.5" opacity=".5" />
+            <path d="m15 33 26 49c1 3 37 3 38 0l26-49M41 82c-3 1-3 8-6 11s-14 3-15 8v5c5 10 75 10 80 0v-5c-1-5-12-5-15-8s-3-10-6-11M20 101c8 8 72 8 80 0M45 111v3c4 3 26 3 30 0v-3" />
+            <path d="M23 36c5 16 16 32 21 47M34 37c3 18 11 32 14 46M45 38c0 18 5 32 8 46M56 38c-2 16 0 32 2 46M68 38c-6 16-6 31-5 46M79 37c-9 17-11 30-11 47M90 37C77 57 77 71 73 83M98 36c-9 18-15 35-20 47" opacity=".62" />
+        </>}
+        {type === "orea" && <>
+            <ellipse cx="56" cy="18" rx="30" ry="4.5" /><ellipse cx="56" cy="18" rx="26" ry="2" opacity=".45" />
+            <path d="m26 18 12 31c4 3 32 3 36 0l12-31M38 50c1 5 1 12-1 16M74 50c-1 5-1 12 1 16M37 66c8 3 30 3 38 0M37 63c-9 1-11 4-9 7 11 5 48 5 57 0l-1-5-9-2M74 61l13-5c5-1 6 3 2 5l-14 5M36 73l-5 28c-3 17 51 18 50 1l-3-28M35 74l-5 4 4 2M81 77h10c9 0 10 6 11 15s-1 14-20 16M82 81h8c5 0 6 4 7 12s-1 9-14 12" />
+            <ellipse cx="56" cy="108" rx="20" ry="4" opacity=".6" />
+            <path d="M69 85v17m0-14h4m-4 7h4m-4 7h4M44 76v5c5 3 20 3 25 0v-5" opacity=".45" />
+        </>}
+        {type === "flair" && <>
+            {/* Side profile: a quiet silhouette with no overlapping internal hardware. */}
+            <path d="M25 100h72c5 0 8 3 8 7v3H17v-3c0-4 3-7 8-7Z" />
+            <path d="M30 100V52c0-14 7-27 19-33M30 58h12" />
+            <path d="M48 19c3-3 6-3 9 0 17 18 30 46 39 76h-7C79 67 66 40 48 25Z" />
+            <path d="M42 43h20v23c0 4-20 4-20 0ZM40 69h24v6H40ZM64 71h8c4 0 4 6 0 6H64M48 75v7h8v-7" />
+            <rect x="85" y="94" width="21" height="7" rx="3.5" />
+        </>}
+    </svg>;
+}
+const photos = [
+    { name: "city-after-dark", title: "City after dark", alt: "The illuminated Manhattan skyline and One World Trade Center against a dark night sky", width: 720, height: 405 },
+    { name: "shoreline", title: "At the water’s edge", alt: "A vertical black-and-white photograph of waves washing over a pebbled shore", width: 540, height: 720 },
+    { name: "fireworks", title: "A moment of light", alt: "White and red fireworks against a black sky, with the original camera watermark below", width: 720, height: 540 },
+    { name: "waterfront", title: "Along the waterfront", alt: "Blue clouds above a waterfront park and river, with the original camera watermark below", width: 720, height: 540 },
+];
+const photoPath = (photo, preview = false) => `${import.meta.env.BASE_URL}photos/${photo.name}${preview ? "-preview" : ""}.jpg`;
+
+function PhotoViewer({ initialIndex, onClose }) {
+    const { t } = useLanguage();
+    const [index, setIndex] = useState(initialIndex);
+    const dialogRef = useRef(null);
+    const photo = photos[index];
+    const move = direction => setIndex(current => (current + direction + photos.length) % photos.length);
+
+    useEffect(() => {
+        // Warm adjacent full-size images so keyboard navigation stays responsive.
+        for (const offset of [-1, 1]) {
+            const image = new Image();
+            image.src = photoPath(photos[(index + offset + photos.length) % photos.length]);
         }
-    ];
+    }, [index]);
+
+    useEffect(() => {
+        const trigger = document.activeElement;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        dialogRef.current.showModal();
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            trigger?.focus({ preventScroll: true });
+        };
+    }, []);
 
     return (
-        <motion.section
-            id="hobbies"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px -100px 0px" }}
-            transition={{ duration: 0.4 }}
-            className="relative py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 transition-colors duration-500"
-        >
-            <div className="max-w-6xl mx-auto">
-                {/* Section Header */}
-                <motion.div
-                    className="text-center mb-12 md:mb-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                    transition={{ duration: 0.4 }}
-                >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                        Hobbies & Interests
-                    </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
-                </motion.div>
-
-                {/* Coffee Emphasis Banner - Prominent */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98, y: 15 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    className="mb-12 md:mb-16"
-                >
-                    <div className="relative overflow-hidden rounded-2xl 
-                        bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20
-                        p-6 md:p-8 shadow-lg border-2 border-amber-200/50 dark:border-amber-900/30
-                        hover:shadow-xl transition-shadow duration-300">
-                        {/* Subtle background pattern */}
-                        <div className="absolute inset-0 opacity-5 dark:opacity-10">
-                            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(217,119,6,0.3)_1px,transparent_1px)] bg-[length:40px_40px]" />
-                        </div>
-                        
-                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
-                            <motion.div
-                                animate={{ rotate: [0, 5, -5, 0] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                className="flex-shrink-0"
-                            >
-                                <div className="p-4 rounded-xl bg-amber-100 dark:bg-amber-900/40 border border-amber-200 dark:border-amber-800/50">
-                                    <FlaskConical className="w-8 h-8 md:w-10 md:h-10 text-amber-700 dark:text-amber-400" strokeWidth={2.5} />
-                                </div>
-                            </motion.div>
-                            <div className="text-center md:text-left">
-                                <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                                    Always experimenting with new brew methods and coffee origins!
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                                    Exploring the art and science of specialty coffee
-                                </p>
-                            </div>
-                        </div>
-                        
-                        {/* Subtle decorative icons */}
-                        <div className="absolute top-4 right-4 w-12 h-12 opacity-5 dark:opacity-10">
-                            <Coffee className="w-full h-full text-amber-700 dark:text-amber-400" />
-                        </div>
-                        <div className="absolute bottom-4 left-4 w-10 h-10 opacity-5 dark:opacity-10">
-                            <Droplet className="w-full h-full text-amber-700 dark:text-amber-400" />
-                        </div>
+        <dialog ref={dialogRef} className="photo-viewer" aria-labelledby="photo-viewer-title"
+            onCancel={event => { event.preventDefault(); onClose(); }}
+            onClick={event => { if (event.target === event.currentTarget) onClose(); }}
+            onKeyDown={event => {
+                if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+                    event.preventDefault();
+                    move(event.key === "ArrowLeft" ? -1 : 1);
+                }
+            }}>
+            <div className="photo-viewer-panel">
+                <div className="photo-viewer-header">
+                    <span id="photo-viewer-title">{t("Photography by Jingrui Feng")}</span>
+                    <button type="button" onClick={onClose} aria-label={t("Close photo viewer")}><X size={21} /></button>
+                </div>
+                <div className="photo-viewer-stage">
+                    <img key={photo.name} src={photoPath(photo)} alt={t(photo.alt)} />
+                </div>
+                <div className="photo-viewer-footer">
+                    <div aria-live="polite" aria-atomic="true"><span className="photo-count">{index + 1} / {photos.length}</span><span>{t(photo.title)}</span></div>
+                    <div className="photo-viewer-controls">
+                        <button type="button" onClick={() => move(-1)} aria-label={t("Previous photo")}><ChevronLeft size={22} /></button>
+                        <button type="button" onClick={() => move(1)} aria-label={t("Next photo")}><ChevronRight size={22} /></button>
                     </div>
-                </motion.div>
-
-                {/* Hobbies Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    {hobbies.map((hobby, i) => {
-                        const Icon = hobby.icon;
-                        return (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                                transition={{ delay: i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                whileHover={{ y: -6, scale: 1.02 }}
-                                className={`group relative p-6 md:p-8 rounded-2xl 
-                                    ${hobby.bgColor} 
-                                    border-2 ${hobby.borderColor}
-                                    shadow-lg hover:shadow-2xl 
-                                    transition-all duration-300 will-change-transform`}
-                            >
-                                {/* Icon */}
-                                <motion.div
-                                    className={`inline-flex p-4 rounded-xl ${hobby.iconBg} mb-6
-                                        group-hover:scale-110 transition-transform duration-300`}
-                                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    <Icon className={`w-8 h-8 ${hobby.iconColor}`} strokeWidth={2} />
-                                </motion.div>
-
-                                {/* Title */}
-                                <h3 className={`text-2xl md:text-3xl font-bold mb-3 
-                                    bg-gradient-to-r ${hobby.color} bg-clip-text text-transparent`}>
-                                    {hobby.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed text-base md:text-lg">
-                                    {hobby.description}
-                                </p>
-
-                                {/* Details List */}
-                                <ul className="space-y-2.5">
-                                    {hobby.details.map((detail, idx) => {
-                                        const bulletClass = hobby.iconColor.includes('amber')
-                                            ? 'before:text-amber-600 dark:before:text-amber-400'
-                                            : hobby.iconColor.includes('purple')
-                                            ? 'before:text-purple-600 dark:before:text-purple-400'
-                                            : 'before:text-blue-600 dark:before:text-blue-400';
-                                        
-                                        return (
-                                            <motion.li
-                                                key={idx}
-                                                initial={{ opacity: 0, x: -5 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: i * 0.08 + idx * 0.05 }}
-                                                className={`text-sm md:text-base text-gray-600 dark:text-gray-400 
-                                                    flex items-start gap-3
-                                                    before:content-['▹'] 
-                                                    ${bulletClass}
-                                                    before:font-bold before:flex-shrink-0 before:mt-0.5`}
-                                            >
-                                                <span>{detail}</span>
-                                            </motion.li>
-                                        );
-                                    })}
-                                </ul>
-
-                                {/* Decorative gradient overlay on hover */}
-                                <div className={`absolute inset-0 rounded-2xl 
-                                    bg-gradient-to-br ${hobby.color} opacity-0 
-                                    group-hover:opacity-5 transition-opacity duration-300 
-                                    pointer-events-none`} />
-                            </motion.div>
-                        );
-                    })}
                 </div>
             </div>
-        </motion.section>
+        </dialog>
     );
 }
 
+export default function Hobbies() {
+    const { t } = useLanguage();
+    const [brew, setBrew] = useState("Pour-over");
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+    return (
+        <section id="hobbies" className="section section-tinted">
+            <div className="shell">
+                <div className="section-heading">
+                    <div><p className="eyebrow">{t("07 / OFF THE CLOCK")}</p><h2>{t("Hobbies & Interests")}</h2></div>
+                    <p>{t("A few things that keep me curious.")}</p>
+                </div>
+                <div className="interests-grid">
+                    <article className="interest-card coffee-card">
+                        <div className="interest-kicker"><Coffee size={18} /><span>{t("Specialty Coffee")}</span></div>
+                        <h3>{t("My daily ritual.")}</h3>
+                        <p>{t("I like to take coffee slowly: brew by hand, taste carefully, and enjoy the cup. I’m always trying new recipes, methods, and gear. Occasionally overengineered; always worth the pause.")}</p>
+                        <div className="brew-picker" role="group" aria-label={t("Explore my coffee interests")}>
+                            {Object.keys(brewMethods).map(method => (
+                                <button key={method} type="button" aria-pressed={brew === method} onClick={() => setBrew(method)}>
+                                    {method === "Espresso" ? <Coffee size={15} /> : <Droplets size={15} />}{t(method)}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="brew-note" aria-live="polite" aria-atomic="true">
+                            <div key={brew}><h4>{t(brewMethods[brew].title)}</h4>
+                            <p>{t(brewMethods[brew].description)}</p></div>
+                        </div>
+                        <div className="gear-shelf">
+                            <h4>{t("On my coffee counter")}</h4>
+                            <ul className={brew === "Espresso" ? "gear-list gear-list-espresso" : "gear-list"}>
+                                {(brew === "Espresso" ? ["grinder", "flair"] : ["grinder", "v60", "orea"]).map(type => <li key={type}>
+                                    <GearSketch type={type} />
+                                    <span className="gear-maker">{gear[type].maker}</span>
+                                    <span className="gear-name">{gear[type].name}</span>
+                                    <span className="gear-detail">{t(gear[type].detail)}</span>
+                                </li>)}
+                            </ul>
+                        </div>
+                        <div className="roaster-shelf">
+                            <h4>{t("Roasters I love")}</h4>
+                            <ul>{roasters.map(roaster => (
+                                <li key={roaster.name}><a href={roaster.href} target="_blank" rel="noopener noreferrer" aria-label={t("{roaster} coffee (opens in a new tab)", { roaster: roaster.name })}>{roaster.name}<ArrowUpRight size={13} aria-hidden="true" /></a></li>
+                            ))}</ul>
+                        </div>
+                        <a className="coffee-link" href="https://www.linkedin.com/in/jingrui-feng/" target="_blank" rel="noopener noreferrer" aria-label={t("Let’s talk coffee — message me on LinkedIn (opens in a new tab)")}>
+                            {t("Let’s talk coffee")} <ArrowUpRight size={17} />
+                        </a>
+                        <span className="coffee-invitation">{t("Drop me a DM on LinkedIn.")}</span>
+                    </article>
+                    <article className="interest-card photography-card">
+                        <div className="interest-kicker"><Camera size={18} /><span>{t("Photography")}</span></div>
+                        <div className="photo-gallery" aria-label={t("Selected photographs")}>
+                            {photos.map((photo, index) => (
+                                <button type="button" key={photo.name} className={`photo-tile photo-tile-${index + 1}`} onClick={() => setSelectedPhoto(index)} aria-label={t("View photo: {photo}", { photo: t(photo.title) })} aria-haspopup="dialog" title={t("Enlarge {photo}", { photo: t(photo.title) })}>
+                                    <img src={photoPath(photo, true)} width={photo.width} height={photo.height} alt={t(photo.alt)} loading="lazy" decoding="async" />
+                                    <span className="photo-expand" aria-hidden="true"><Expand size={14} /></span>
+                                </button>
+                            ))}
+                        </div>
+                        <h3>{t("A different perspective.")}</h3>
+                        <p>{t("Photography is another way I explore. A chance to slow down, notice the details, and see everyday moments a little differently.")}</p>
+                    </article>
+                    <article className="interest-card gaming-card">
+                        <div className="interest-kicker"><Gamepad2 size={18} /><span>{t("Video Games")}</span></div>
+                        <h3>{t("Worlds I get lost in.")}</h3>
+                        <p>{t("From competitive matches to unexpected indie discoveries, I enjoy immersive experiences across different genres.")}</p>
+                        <ul className="game-list" aria-label={t("Games I enjoy")}>
+                            {games.map(game => <li key={game.name}>
+                                <span className={`game-icon game-${game.color}`} aria-hidden="true">
+                                    {game.logo ? <img src={game.logo} alt="" className="game-logo" /> : <Puzzle size={24} strokeWidth={1.6} />}
+                                </span>
+                                {t(game.name)}
+                            </li>)}
+                        </ul>
+                    </article>
+                    <article className="interest-card technology-card">
+                        <div className="interest-kicker"><Cpu size={18} /><span>{t("Latest Technology")}</span></div>
+                        <h3>{t("Curiosity comes standard.")}</h3>
+                        <p>{t("I’m drawn to the details that make technology interesting to use, from a camera’s controls to the components inside a PC. These are a few things I enjoy exploring.")}</p>
+                        <ul className="technology-interests" aria-label={t("Technology I’m curious about")}>
+                            {technologyInterests.map(interest => {
+                                const Icon = interest.icon;
+                                return <li key={interest.name}>
+                                    <Icon size={36} strokeWidth={1.15} aria-hidden="true" />
+                                    <div><h4>{t(interest.name)}</h4><p>{t(interest.detail)}</p></div>
+                                </li>;
+                            })}
+                        </ul>
+                        <p className="technology-footnote">{t("Exploring new devices · Following tech trends and reviews")}</p>
+                    </article>
+                </div>
+            </div>
+            {selectedPhoto !== null && <PhotoViewer initialIndex={selectedPhoto} onClose={() => setSelectedPhoto(null)} />}
+        </section>
+    );
+}

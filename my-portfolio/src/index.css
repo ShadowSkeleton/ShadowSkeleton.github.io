@@ -2,89 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    html {
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-    }
-    
-    body {
-        @apply antialiased;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-        position: relative;
-        /* Performance optimizations */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-    }
+/* Interpolate the palette once; descendants inherit the same color at every frame. */
+@property --page { syntax: "<color>"; inherits: true; initial-value: #fcfcfd; }
+@property --surface { syntax: "<color>"; inherits: true; initial-value: #fff; }
+@property --tint { syntax: "<color>"; inherits: true; initial-value: #f3f4f8; }
+@property --control-ink { syntax: "<color>"; inherits: true; initial-value: #18223b; }
+@property --ink { syntax: "<color>"; inherits: true; initial-value: #18223b; }
+@property --muted { syntax: "<color>"; inherits: true; initial-value: #606b80; }
+@property --line { syntax: "<color>"; inherits: true; initial-value: #e2e5ee; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #6550c9; }
+@property --accent-soft { syntax: "<color>"; inherits: true; initial-value: #efecfb; }
+@property --nav { syntax: "<color>"; inherits: true; initial-value: rgba(252, 252, 253, .94); }
 
-    /* Prevent horizontal scroll on root container */
-    #root {
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-    }
-
-    /* Better text rendering */
-    h1, h2, h3, h4, h5, h6 {
-        @apply font-bold;
-        letter-spacing: -0.025em;
-    }
-
-    /* Smooth scrollbar styling */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        @apply bg-gray-100 dark:bg-gray-900;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        @apply bg-gray-300 dark:bg-gray-700 rounded-full;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        @apply bg-gray-400 dark:bg-gray-600;
-    }
+:root {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--page);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    --page: #fcfcfd;
+    --surface: #fff;
+    --tint: #f3f4f8;
+    --ink: #18223b;
+    --control-ink: #18223b;
+    --muted: #606b80;
+    --line: #e2e5ee;
+    --accent: #6550c9;
+    --accent-soft: #efecfb;
+    --nav: rgba(252, 252, 253, .94);
+    color-scheme: light;
 }
-
-@layer utilities {
-    /* Gradient text utility */
-    .text-gradient {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300;
-    }
-
-    /* Section number styling */
-    .section-number {
-        @apply text-sm font-bold text-blue-600 dark:text-blue-400 opacity-60;
-        font-variant-numeric: tabular-nums;
-    }
-
-    /* Smooth transitions */
-    .transition-smooth {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* GPU acceleration for animated elements */
-    .will-change-transform {
-        will-change: transform;
-    }
-
-    .will-change-opacity {
-        will-change: opacity;
-    }
-
-    /* Optimize rendering for motion components */
-    [data-framer-component] {
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        perspective: 1000px;
-    }
+:root.dark {
+    --page: #101521;
+    --surface: #191f2e;
+    --tint: #141a28;
+    --ink: #edf0f7;
+    --control-ink: #edf0f7;
+    --muted: #a7b1c5;
+    --line: #2d3548;
+    --accent: #b6a5ff;
+    --accent-soft: #2a2343;
+    --nav: rgba(16, 21, 33, .95);
+    color: var(--ink);
+    background: var(--page);
+    color-scheme: dark;
 }
-
+* { box-sizing: border-box; }
+/* The language provider owns scroll anchoring during copy reflow. */
+html { scroll-behavior: smooth; scroll-padding-top: 105px; overflow-anchor: none; }
+body { margin: 0; min-width: 320px; background: var(--page); color: var(--ink); }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+button, a { touch-action: manipulation; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-radius: 4px; }
+::selection { background: #dbd2ff; color: #252044; }
+h1, h2, h3, h4, p { margin: 0; }
+h1, h2, h3 { font-weight: 700; }
+img { display: block; max-width: 100%; }
+ul { margin: 0; padding: 0; list-style: none; }
+/* Avoid starting a second transition when a child inherits an animated color. */
+@media (prefers-reduced-motion: no-preference) {
+    html.theme-transition *:not(.theme-toggle):not(.theme-toggle *),
+    html.theme-transition *::before,
+    html.theme-transition *::after { transition: none !important; }
+    html.theme-transition {
+        transition: --control-ink .55s ease-out, --page .8s ease, --surface .8s ease, --tint .8s ease, --ink .8s ease, --muted .8s ease, --line .8s ease, --accent .8s ease, --accent-soft .8s ease, --nav .8s ease !important;
+    }
+    /* These accents use fixed brand colors instead of the shared palette. */
+    html.theme-transition :is(.brew-picker button,
+        .coffee-card .interest-kicker, .coffee-link, .brew-note h4, .gear-list svg,
+        .roaster-shelf a, .photography-card .interest-kicker,
+        .rpi .academic-badges > span, .employer-haier, .employer-cas) {
+        transition: color .8s ease, background-color .8s ease, border-color .8s ease, box-shadow .8s ease !important;
+    }
+    html.theme-transition :is(.coffee-card, .brew-picker, .roaster-shelf) {
+        transition: background-color .8s ease, border-color .8s ease, box-shadow .8s ease !important;
+    }
+    html.theme-transition .hero::before,
+    html.theme-transition .hero::after { transition: opacity .8s ease !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
