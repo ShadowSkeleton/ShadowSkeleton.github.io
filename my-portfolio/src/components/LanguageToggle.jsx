@@ -1,4 +1,4 @@
-import { Languages } from "lucide-react";
+import { Languages } from "./Icons";
 import useLanguage from "../hooks/useLanguage";
 
 export default function LanguageToggle() {

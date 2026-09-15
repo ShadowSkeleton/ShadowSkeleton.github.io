@@ -2,86 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Interpolate the palette once; descendants inherit the same color at every frame. */
-@property --page { syntax: "<color>"; inherits: true; initial-value: #fcfcfd; }
-@property --surface { syntax: "<color>"; inherits: true; initial-value: #fff; }
-@property --tint { syntax: "<color>"; inherits: true; initial-value: #f3f4f8; }
-@property --control-ink { syntax: "<color>"; inherits: true; initial-value: #18223b; }
-@property --ink { syntax: "<color>"; inherits: true; initial-value: #18223b; }
-@property --muted { syntax: "<color>"; inherits: true; initial-value: #606b80; }
-@property --line { syntax: "<color>"; inherits: true; initial-value: #e2e5ee; }
-@property --accent { syntax: "<color>"; inherits: true; initial-value: #6550c9; }
-@property --accent-soft { syntax: "<color>"; inherits: true; initial-value: #efecfb; }
-@property --nav { syntax: "<color>"; inherits: true; initial-value: rgba(252, 252, 253, .94); }
-
+/* Native system typography and a single semantic palette for both appearances. */
 :root {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: var(--ink);
-    background: var(--page);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable", system-ui, sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    --page: #fcfcfd;
-    --surface: #fff;
-    --tint: #f3f4f8;
-    --ink: #18223b;
-    --control-ink: #18223b;
-    --muted: #606b80;
-    --line: #e2e5ee;
-    --accent: #6550c9;
-    --accent-soft: #efecfb;
-    --nav: rgba(252, 252, 253, .94);
     color-scheme: light;
-}
-:root.dark {
-    --page: #101521;
-    --surface: #191f2e;
-    --tint: #141a28;
-    --ink: #edf0f7;
-    --control-ink: #edf0f7;
-    --muted: #a7b1c5;
-    --line: #2d3548;
-    --accent: #b6a5ff;
-    --accent-soft: #2a2343;
-    --nav: rgba(16, 21, 33, .95);
+    --page: #f5f5f5;
+    --surface: #fdfdfd;
+    --tint: #ebebeb;
+    --ink: #202020;
+    --control-ink: #202020;
+    --muted: #666666;
+    --line: rgb(29 29 31 / 10%);
+    --accent: #202020;
+    --accent-soft: #e6e6e6;
+    --action: #242424;
+    --action-ink: #fafafa;
+    --sage: #42724f;
+    --rose: #a34862;
+    --personal: #eeeeee;
+    --nav: rgb(253 253 253 / 85%);
+    --bezel: rgb(29 29 31 / 4%);
+    --highlight: rgb(255 255 255 / 85%);
+    --shadow: 0 8px 36px rgb(40 40 50 / 4%), 0 1px 3px rgb(40 40 50 / 3%);
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    /* Layers: content 0, navigation 10, skip link 20; dialogs use the top layer. */
+    --layer-nav: 10;
+    --layer-skip: 20;
     color: var(--ink);
     background: var(--page);
+}
+:root.dark {
     color-scheme: dark;
+    --page: #171717;
+    --surface: #202020;
+    --tint: #2b2b2b;
+    --ink: #f3f3f3;
+    --control-ink: #f3f3f3;
+    --muted: #adadad;
+    --line: rgb(245 245 247 / 11%);
+    --accent: #f3f3f3;
+    --accent-soft: #303030;
+    --action: #f3f3f3;
+    --action-ink: #202020;
+    --sage: #9fbea1;
+    --rose: #dca0b1;
+    --personal: #1c1c1c;
+    --nav: rgb(32 32 32 / 90%);
+    --bezel: rgb(245 245 247 / 5%);
+    --highlight: rgb(255 255 255 / 7%);
+    --shadow: 0 8px 36px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
 }
 * { box-sizing: border-box; }
-/* The language provider owns scroll anchoring during copy reflow. */
-html { scroll-behavior: smooth; scroll-padding-top: 105px; overflow-anchor: none; }
+html { scroll-behavior: smooth; scroll-padding-top: 108px; overflow-anchor: none; }
 body { margin: 0; min-width: 320px; background: var(--page); color: var(--ink); }
-button, a { -webkit-tap-highlight-color: transparent; }
+button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; }
-button, a { touch-action: manipulation; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-radius: 4px; }
-::selection { background: #dbd2ff; color: #252044; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+::selection { background: var(--accent-soft); color: var(--ink); }
 h1, h2, h3, h4, p { margin: 0; }
-h1, h2, h3 { font-weight: 700; }
+h1, h2, h3 { font-weight: 600; }
 img { display: block; max-width: 100%; }
 ul { margin: 0; padding: 0; list-style: none; }
-/* Avoid starting a second transition when a child inherits an animated color. */
+svg { flex-shrink: 0; }
 @media (prefers-reduced-motion: no-preference) {
-    html.theme-transition *:not(.theme-toggle):not(.theme-toggle *),
-    html.theme-transition *::before,
-    html.theme-transition *::after { transition: none !important; }
-    html.theme-transition {
-        transition: --control-ink .55s ease-out, --page .8s ease, --surface .8s ease, --tint .8s ease, --ink .8s ease, --muted .8s ease, --line .8s ease, --accent .8s ease, --accent-soft .8s ease, --nav .8s ease !important;
+    html.theme-transition, html.theme-transition body,
+    html.theme-transition :is(.surface-body, .site-header, .theme-track, .theme-thumb,
+        .button, .tech-badge, .brew-picker, .brew-picker button, .school-brand,
+        .project-symbol, .contact-panel, .skill-card, .cert-card, .photo-viewer) {
+        transition: color .35s var(--ease), background-color .35s var(--ease),
+            border-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease);
     }
-    /* These accents use fixed brand colors instead of the shared palette. */
-    html.theme-transition :is(.brew-picker button,
-        .coffee-card .interest-kicker, .coffee-link, .brew-note h4, .gear-list svg,
-        .roaster-shelf a, .photography-card .interest-kicker,
-        .rpi .academic-badges > span, .employer-haier, .employer-cas) {
-        transition: color .8s ease, background-color .8s ease, border-color .8s ease, box-shadow .8s ease !important;
-    }
-    html.theme-transition :is(.coffee-card, .brew-picker, .roaster-shelf) {
-        transition: background-color .8s ease, border-color .8s ease, box-shadow .8s ease !important;
-    }
-    html.theme-transition .hero::before,
-    html.theme-transition .hero::after { transition: opacity .8s ease !important; }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

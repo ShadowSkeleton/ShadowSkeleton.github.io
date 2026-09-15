@@ -14,7 +14,7 @@ export default defineConfig({
                     // Separate vendor chunks for better caching
                     'react-vendor': ['react', 'react-dom'],
                     'animation-vendor': ['framer-motion'],
-                    'icons-vendor': ['lucide-react'],
+                    'icons-vendor': ['@phosphor-icons/react'],
                 },
             },
         },
@@ -25,6 +25,6 @@ export default defineConfig({
     },
     // Optimize dependencies
     optimizeDeps: {
-        include: ['react', 'react-dom', 'framer-motion', 'lucide-react'],
+        include: ['react', 'react-dom', 'framer-motion', '@phosphor-icons/react'],
     },
 })

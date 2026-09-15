@@ -1,6 +1,6 @@
 import useLanguage from "../hooks/useLanguage";
 import { useEffect, useRef, useState } from "react";
-import { Coffee, Camera, Gamepad2, Cpu, ArrowUpRight, Expand, X, ChevronLeft, ChevronRight, Watch, Speaker, CircuitBoard, Droplets, Puzzle } from "lucide-react";
+import { Coffee, Camera, Gamepad2, Cpu, ArrowUpRight, Expand, X, ChevronLeft, ChevronRight, Watch, Speaker, CircuitBoard, Droplets, Puzzle } from "./Icons";
 
 const brewMethods = {
     "Pour-over": {
@@ -138,16 +138,19 @@ export default function Hobbies() {
     const { t } = useLanguage();
     const [brew, setBrew] = useState("Pour-over");
     const [selectedPhoto, setSelectedPhoto] = useState(null);
+    const [technology, setTechnology] = useState(0);
+    const selectedTechnology = technologyInterests[technology];
+    const TechnologyIcon = selectedTechnology.icon;
 
     return (
-        <section id="hobbies" className="section section-tinted">
+        <section id="hobbies" className="section personal-section">
             <div className="shell">
                 <div className="section-heading">
-                    <div><p className="eyebrow">{t("07 / OFF THE CLOCK")}</p><h2>{t("Hobbies & Interests")}</h2></div>
-                    <p>{t("A few things that keep me curious.")}</p>
+                    <div><p className="eyebrow personal-label"><Coffee size={17} aria-hidden="true" />{t("Off the clock")}</p><h2>{t("Hobbies & Interests")}</h2></div>
+                    <p>{t("A few things that keep me curious.")} <span className="personal-aside">{t("The coffee gets its own section. Naturally.")}</span></p>
                 </div>
                 <div className="interests-grid">
-                    <article className="interest-card coffee-card">
+                    <article className="interest-card coffee-card surface-shell"><div className="interest-body surface-body">
                         <div className="interest-kicker"><Coffee size={18} /><span>{t("Specialty Coffee")}</span></div>
                         <h3>{t("My daily ritual.")}</h3>
                         <p>{t("I like to take coffee slowly: brew by hand, taste carefully, and enjoy the cup. I’m always trying new recipes, methods, and gear. Occasionally overengineered; always worth the pause.")}</p>
@@ -183,48 +186,52 @@ export default function Hobbies() {
                             {t("Let’s talk coffee")} <ArrowUpRight size={17} />
                         </a>
                         <span className="coffee-invitation">{t("Drop me a DM on LinkedIn.")}</span>
-                    </article>
-                    <article className="interest-card photography-card">
+                    </div></article>
+                    <article className="interest-card photography-card surface-shell"><div className="interest-body surface-body">
                         <div className="interest-kicker"><Camera size={18} /><span>{t("Photography")}</span></div>
                         <div className="photo-gallery" aria-label={t("Selected photographs")}>
                             {photos.map((photo, index) => (
                                 <button type="button" key={photo.name} className={`photo-tile photo-tile-${index + 1}`} onClick={() => setSelectedPhoto(index)} aria-label={t("View photo: {photo}", { photo: t(photo.title) })} aria-haspopup="dialog" title={t("Enlarge {photo}", { photo: t(photo.title) })}>
                                     <img src={photoPath(photo, true)} width={photo.width} height={photo.height} alt={t(photo.alt)} loading="lazy" decoding="async" />
                                     <span className="photo-expand" aria-hidden="true"><Expand size={14} /></span>
+                                    <span className="photo-caption" aria-hidden="true">{t(photo.title)}</span>
                                 </button>
                             ))}
                         </div>
                         <h3>{t("A different perspective.")}</h3>
                         <p>{t("Photography is another way I explore. A chance to slow down, notice the details, and see everyday moments a little differently.")}</p>
-                    </article>
-                    <article className="interest-card gaming-card">
+                    </div></article>
+                    <article className="interest-card gaming-card surface-shell"><div className="interest-body surface-body">
                         <div className="interest-kicker"><Gamepad2 size={18} /><span>{t("Video Games")}</span></div>
                         <h3>{t("Worlds I get lost in.")}</h3>
                         <p>{t("From competitive matches to unexpected indie discoveries, I enjoy immersive experiences across different genres.")}</p>
                         <ul className="game-list" aria-label={t("Games I enjoy")}>
                             {games.map(game => <li key={game.name}>
                                 <span className={`game-icon game-${game.color}`} aria-hidden="true">
-                                    {game.logo ? <img src={game.logo} alt="" className="game-logo" /> : <Puzzle size={24} strokeWidth={1.6} />}
+                                    {game.logo ? <img src={game.logo} alt="" className="game-logo" /> : <Puzzle size={24} />}
                                 </span>
                                 {t(game.name)}
                             </li>)}
                         </ul>
-                    </article>
-                    <article className="interest-card technology-card">
+                    </div></article>
+                    <article className="interest-card technology-card surface-shell"><div className="interest-body surface-body">
                         <div className="interest-kicker"><Cpu size={18} /><span>{t("Latest Technology")}</span></div>
                         <h3>{t("Curiosity comes standard.")}</h3>
                         <p>{t("I’m drawn to the details that make technology interesting to use, from a camera’s controls to the components inside a PC. These are a few things I enjoy exploring.")}</p>
-                        <ul className="technology-interests" aria-label={t("Technology I’m curious about")}>
-                            {technologyInterests.map(interest => {
+                        <div className="technology-picker" role="group" aria-label={t("Technology I’m curious about")}>
+                            {technologyInterests.map((interest, index) => {
                                 const Icon = interest.icon;
-                                return <li key={interest.name}>
-                                    <Icon size={36} strokeWidth={1.15} aria-hidden="true" />
-                                    <div><h4>{t(interest.name)}</h4><p>{t(interest.detail)}</p></div>
-                                </li>;
+                                return <button type="button" key={interest.name} aria-pressed={technology === index} aria-controls="technology-description" onClick={() => setTechnology(index)}>
+                                    <Icon size={30} aria-hidden="true" /><span>{t(interest.name)}</span>
+                                </button>;
                             })}
-                        </ul>
+                        </div>
+                        <div className="technology-detail" id="technology-description" aria-live="polite" aria-atomic="true">
+                            <TechnologyIcon size={46} aria-hidden="true" />
+                            <div key={selectedTechnology.name}><h4>{t(selectedTechnology.name)}</h4><p>{t(selectedTechnology.detail)}</p></div>
+                        </div>
                         <p className="technology-footnote">{t("Exploring new devices · Following tech trends and reviews")}</p>
-                    </article>
+                    </div></article>
                 </div>
             </div>
             {selectedPhoto !== null && <PhotoViewer initialIndex={selectedPhoto} onClose={() => setSelectedPhoto(null)} />}

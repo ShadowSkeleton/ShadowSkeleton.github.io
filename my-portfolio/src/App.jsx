@@ -2,6 +2,7 @@ import useLanguage from "./hooks/useLanguage";
 import { lazy, Suspense, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import useReveal from "./hooks/useReveal";
 import "./App.css";
 
 const About = lazy(() => import("./components/About"));
@@ -15,21 +16,29 @@ const Contact = lazy(() => import("./components/Contact"));
 
 export default function App() {
     const { t } = useLanguage();
+    useReveal();
     useEffect(() => {
-        const hash = window.location.hash;
-        if (!hash) return;
+        let pendingHash = window.location.hash;
+        let initial = true;
         const observer = new MutationObserver(scrollToSection);
         function scrollToSection() {
-            if (window.location.hash !== hash) { observer.disconnect(); return; }
-            const target = document.getElementById(hash.slice(1));
+            if (!pendingHash) return;
+            const target = document.getElementById(pendingHash.slice(1));
             if (target) {
-                target.scrollIntoView({ behavior: "instant" });
-                observer.disconnect();
+                const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                target.scrollIntoView({ behavior: initial || reduce ? "instant" : "smooth" });
+                pendingHash = "";
             }
         }
+        const followHash = () => {
+            initial = false;
+            pendingHash = window.location.hash;
+            scrollToSection();
+        };
         observer.observe(document.getElementById("main"), { childList: true, subtree: true });
+        window.addEventListener("hashchange", followHash);
         scrollToSection();
-        return () => observer.disconnect();
+        return () => { observer.disconnect(); window.removeEventListener("hashchange", followHash); };
     }, []);
 
     return <>
