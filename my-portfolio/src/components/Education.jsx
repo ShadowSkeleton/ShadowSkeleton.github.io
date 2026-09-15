@@ -1,5 +1,5 @@
 import useLanguage from "../hooks/useLanguage";
-import { GraduationCap, MapPin, Award } from "lucide-react";
+import { GraduationCap, MapPin, Award } from "./Icons";
 
 // Official logos: cims.nyu.edu/static/cims/images/Courant_Logos/NYUCourant_Long-Color.png
 // and www.rpi.edu/themes/custom/rpi/img/RPI_Logo_White.svg. Embedded; no new asset paths.
@@ -53,15 +53,15 @@ const education = [
 
 export function SchoolLogo({ school, className }) {
     const item = education.find(edu => edu.color === school);
-    return item ? <img src={item.logo} alt={item.alt} className={className} /> : null;
+    return item ? <img src={item.logo} alt={item.alt} className={className} width={school === "nyu" ? 1913 : 500} height={school === "nyu" ? 347 : 302} /> : null;
 }
 
 export default function Education() {
     const { t } = useLanguage();
     return <section id="education" className="section section-tinted">
         <div className="shell">
-            <div className="section-heading"><div><p className="eyebrow">{t("02 / FOUNDATIONS")}</p><h2>{t("Education")}</h2></div><p>{t("Connecting technology, systems, and people.")}</p></div>
-            <div className="education-grid">{education.map(edu => <article key={edu.school} className={`education-card ${edu.color}`}>
+            <div className="section-heading"><div><p className="eyebrow">{t("Foundations")}</p><h2>{t("Education")}</h2></div><p>{t("Connecting technology, systems, and people.")}</p></div>
+            <div className="education-grid">{education.map(edu => <article key={edu.school} className={`education-card surface-shell ${edu.color}`}><div className="surface-body">
                 <div className="school-brand"><SchoolLogo school={edu.color} className={`school-logo ${edu.color}-logo`} /></div>
                 <div className="school-body">
                     <p className="school-label">{t(edu.label)}</p>
@@ -70,7 +70,7 @@ export default function Education() {
                     <div className="academic-badges"><span>GPA <strong>{edu.gpa}</strong></span>{edu.honor && <span><Award size={15} />{t(edu.honor)}</span>}</div>
                     <div className="coursework"><h4>{t("Relevant Coursework")}</h4><ul>{edu.coursework.map(course => <li key={course}>{t(course)}</li>)}</ul></div>
                 </div>
-            </article>)}</div>
+            </div></article>)}</div>
         </div>
     </section>;
 }

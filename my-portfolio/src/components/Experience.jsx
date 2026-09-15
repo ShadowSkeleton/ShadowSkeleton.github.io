@@ -1,5 +1,5 @@
 import useLanguage from "../hooks/useLanguage";
-import { BriefcaseBusiness, GraduationCap, BrainCircuit, Building2, Landmark, MapPin } from "lucide-react";
+import { BriefcaseBusiness, GraduationCap, BrainCircuit, Building2, Landmark, MapPin } from "./Icons";
 import experience from "../data/experience.json";
 import { TechBadge } from "./Skills";
 import { SchoolLogo } from "./Education";
@@ -16,7 +16,7 @@ export default function Experience() {
     const { t } = useLanguage();
     return <section id="experience" className="section">
         <div className="shell">
-            <div className="section-heading"><div><p className="eyebrow">{t("03 / ALONG THE WAY")}</p><h2>{t("Professional Experience")}</h2></div><p>{t("Building, teaching, and learning.")}</p></div>
+            <div className="section-heading"><div><p className="eyebrow">{t("Along the way")}</p><h2>{t("Professional Experience")}</h2></div><p>{t("Building, teaching, and learning.")}</p></div>
             <div className="experience-list">{sortedExperience.map(exp => {
                 const Icon = exp.role.includes("Teaching") ? GraduationCap : exp.role.includes("Research") ? BrainCircuit : BriefcaseBusiness;
                 return <article className="experience-item" key={exp.title}>

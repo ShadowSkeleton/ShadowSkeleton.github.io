@@ -1,5 +1,5 @@
 import useLanguage from "../hooks/useLanguage";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "./Icons";
 import useTheme from "../hooks/useTheme";
 
 export default function ThemeToggle() {

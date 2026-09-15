@@ -1,5 +1,5 @@
 import useLanguage from "../hooks/useLanguage";
-import { Code2, Layers, Database, Cloud, Brain, Workflow, ScanLine, ChartNoAxesCombined, Bot, Network, TestTube2 } from "lucide-react";
+import { Code2, Layers, Database, Cloud, Brain, Workflow, ScanLine, ChartNoAxesCombined, Bot, Network, TestTube2 } from "./Icons";
 
 // Devicon v2.17.0 (MIT), embedded to keep the existing file structure and avoid runtime CDN requests.
 // Source: https://github.com/devicons/devicon/tree/v2.17.0/icons
@@ -74,11 +74,11 @@ export default function Skills() {
     const { t } = useLanguage();
     return <section id="skills" className="section section-tinted">
         <div className="shell">
-            <div className="section-heading"><div><p className="eyebrow">{t("05 / THE TOOLKIT")}</p><h2>{t("Technical Skills")}</h2></div><p>{t("The tools behind the work.")}</p></div>
-            <div className="skills-grid">{skills.map(skill => { const {category, icon: Icon, items} = skill; return <article className="skill-card" key={category}>
+            <div className="section-heading"><div><p className="eyebrow">{t("The toolkit")}</p><h2>{t("Technical Skills")}</h2></div><p>{t("The tools behind the work.")}</p></div>
+            <div className="surface-shell"><div className="skills-grid surface-body">{skills.map(skill => { const {category, icon: Icon, items} = skill; return <article className="skill-card" key={category}>
                 <h3><Icon size={20} aria-hidden="true" />{t(category)}</h3>
                 <div className="tech-list">{items.map(item => <TechBadge key={item} name={item} />)}</div>
-            </article>; })}</div>
+            </article>; })}</div></div>
         </div>
     </section>;
 }
