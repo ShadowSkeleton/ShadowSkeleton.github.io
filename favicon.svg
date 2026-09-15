@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <style>
+    rect { fill: #242424; }
+    text { fill: #f5f5f7; }
+  </style>
+  <rect width="64" height="64" rx="19"/>
+  <text x="30" y="43" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="600" font-size="34" letter-spacing="-3">jf</text>
+</svg>
